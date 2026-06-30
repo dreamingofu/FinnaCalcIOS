@@ -32,6 +32,7 @@ enum CalcFormat {
     static func decimal(_ value: Double, fraction: Int = 2) -> String {
         let f = NumberFormatter()
         f.numberStyle = .decimal
+        f.roundingMode = .halfUp // match JS toFixed/toLocaleString (half away from zero)
         f.minimumFractionDigits = fraction
         f.maximumFractionDigits = fraction
         return f.string(from: NSNumber(value: value.isFinite ? value : 0)) ?? "0"
@@ -41,6 +42,7 @@ enum CalcFormat {
     static func int(_ value: Double) -> String {
         let f = NumberFormatter()
         f.numberStyle = .decimal
+        f.roundingMode = .halfUp
         f.maximumFractionDigits = 0
         return f.string(from: NSNumber(value: value.isFinite ? value : 0)) ?? "0"
     }
@@ -52,6 +54,7 @@ enum CalcFormat {
         let f = NumberFormatter()
         f.numberStyle = .decimal
         f.usesGroupingSeparator = true
+        f.roundingMode = .halfUp
         f.minimumFractionDigits = 0
         f.maximumFractionDigits = 3
         return f.string(from: NSNumber(value: value.isFinite ? value : 0)) ?? "0"
@@ -68,9 +71,16 @@ enum CalcFormat {
         return f.string(from: NSNumber(value: value.isFinite ? value : 0)) ?? "0"
     }
 
-    /// Fixed fraction digits, no grouping — the web `value.toFixed(n)`.
+    /// Fixed fraction digits, no grouping — the web `value.toFixed(n)`
+    /// (half-up rounding, matching JS for positive values).
     static func fixed(_ value: Double, _ n: Int) -> String {
-        String(format: "%.\(n)f", value.isFinite ? value : 0)
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.usesGroupingSeparator = false
+        f.roundingMode = .halfUp
+        f.minimumFractionDigits = n
+        f.maximumFractionDigits = n
+        return f.string(from: NSNumber(value: value.isFinite ? value : 0)) ?? "0"
     }
 
     static func currency(_ value: Double, fraction: Int = 2) -> String {

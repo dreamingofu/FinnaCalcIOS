@@ -69,6 +69,10 @@ final class SupabaseAuthClient: AuthClient {
         try? await client.auth.signOut()
     }
 
+    func accessToken() async -> String? {
+        client.auth.currentSession?.accessToken
+    }
+
     func authStateChanges() -> AsyncStream<AuthUser?> {
         AsyncStream { continuation in
             let task = Task {

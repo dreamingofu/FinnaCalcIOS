@@ -23,6 +23,10 @@ protocol AuthClient: AnyObject {
     func signInWithApple(idToken: String, nonce: String) async throws
     func signOut() async
 
+    /// The current Supabase access token, sent as a Bearer to the API. nil when
+    /// signed out or unconfigured.
+    func accessToken() async -> String?
+
     /// Emits on every session change. The first value is the restored session
     /// on launch — equivalent to `getSession()` followed by `onAuthStateChange`
     /// in lib/auth.tsx.
@@ -39,6 +43,7 @@ final class UnconfiguredAuthClient: AuthClient {
     func signUp(email: String, password: String, name: String) async throws -> SignUpResult { throw AuthError.notConfigured }
     func signInWithApple(idToken: String, nonce: String) async throws { throw AuthError.notConfigured }
     func signOut() async {}
+    func accessToken() async -> String? { nil }
     func authStateChanges() -> AsyncStream<AuthUser?> { AsyncStream { $0.finish() } }
 }
 

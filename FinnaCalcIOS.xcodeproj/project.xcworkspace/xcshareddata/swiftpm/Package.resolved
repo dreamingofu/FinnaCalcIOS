@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "plaid-link-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/plaid/plaid-link-ios-spm.git",
+      "state" : {
+        "revision" : "2e1897f728962d3ed177c217761d6a14baa3c733",
+        "version" : "5.6.1"
+      }
+    },
+    {
       "identity" : "supabase-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/supabase/supabase-swift.git",
