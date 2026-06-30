@@ -17,24 +17,34 @@ import SwiftUI
 
 struct FCBadge<Content: View>: View {
 
-    /// Mirrors `badgeVariants.variant` in badge.tsx.
+    /// Badge variants (design Badge.prompt.md).
     enum Variant {
-        case `default`     // border-transparent bg-primary text-primary-foreground
-        case secondary     // border-transparent bg-secondary text-secondary-foreground
-        case destructive   // border-transparent bg-destructive text-destructive-foreground
-        case outline       // text-foreground (visible border, no fill)
+        case `default`     // brand emphasis (filled)
+        case secondary     // neutral category tag (muted fill)
+        case destructive   // destructive (red fill)
+        case outline       // quiet label (border, no fill)
+        case positive      // gains (green tint)
+        case negative      // costs (red tint)
+        case caution       // pending (amber tint)
     }
 
     private let variant: Variant
+    private let dot: Bool
     private let content: () -> Content
 
-    init(variant: Variant = .default, @ViewBuilder content: @escaping () -> Content) {
+    init(variant: Variant = .default, dot: Bool = false, @ViewBuilder content: @escaping () -> Content) {
         self.variant = variant
+        self.dot = dot
         self.content = content
     }
 
     var body: some View {
-        HStack(spacing: 0) { content() }
+        HStack(spacing: 5) {
+            if dot {
+                Circle().fill(foreground).frame(width: 6, height: 6)
+            }
+            content()
+        }
             .font(.system(size: Theme.FontSize.xs, weight: .semibold)) // text-xs font-semibold
             .foregroundStyle(foreground)
             .padding(.horizontal, 10) // px-2.5
@@ -52,6 +62,9 @@ struct FCBadge<Content: View>: View {
         case .secondary:   return Theme.secondary
         case .destructive: return Theme.destructive
         case .outline:     return .clear
+        case .positive:    return Theme.positive.opacity(0.12)
+        case .negative:    return Theme.negative.opacity(0.12)
+        case .caution:     return Theme.cautionTint
         }
     }
 
@@ -61,6 +74,9 @@ struct FCBadge<Content: View>: View {
         case .secondary:   return Theme.secondaryForeground
         case .destructive: return Theme.destructiveForeground
         case .outline:     return Theme.foreground
+        case .positive:    return Theme.positive
+        case .negative:    return Theme.negative
+        case .caution:     return Theme.caution
         }
     }
 
@@ -72,8 +88,8 @@ struct FCBadge<Content: View>: View {
 // MARK: - String convenience
 
 extension FCBadge where Content == Text {
-    init(_ title: String, variant: Variant = .default) {
-        self.init(variant: variant) { Text(title) }
+    init(_ title: String, variant: Variant = .default, dot: Bool = false) {
+        self.init(variant: variant, dot: dot) { Text(title) }
     }
 }
 

@@ -13,10 +13,10 @@ import SwiftUI
 // MARK: - Result accent colors
 
 extension Theme {
-    /// Tailwind green-600 / green-400 — headline/positive result figures.
-    static let positive = Color(FCColorToken(light: (142, 76, 36), dark: (142, 69, 58)))
-    /// Tailwind red-600 / red-400 — cost/negative result figures.
-    static let negative = Color(FCColorToken(light: (0, 72, 51), dark: (0, 91, 71)))
+    /// Positive result figures — green-600 (light) / green-400 (dark).
+    static let positive = fcDynamic(light: 0x16a34a, dark: 0x4ade80)
+    /// Negative / cost figures — red-600 (light) / red-500 (dark).
+    static let negative = fcDynamic(light: 0xdc2626, dark: 0xef4444)
 }
 
 // MARK: - Parsing & formatting (mirrors the web helpers)
@@ -170,11 +170,12 @@ struct CalcResult: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+            Text(label.uppercased())
+                .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+                .tracking(0.6) // overline: uppercase, wide tracking
                 .foregroundStyle(Theme.mutedForeground)
             Text(value)
-                .font(.system(size: emphasized ? 30 : 24, weight: .bold))
+                .font(Theme.figure(emphasized ? Theme.FontSize.xl3 : Theme.FontSize.xl2, weight: .bold))
                 .foregroundStyle(color)
                 .minimumScaleFactor(0.6)
                 .lineLimit(1)

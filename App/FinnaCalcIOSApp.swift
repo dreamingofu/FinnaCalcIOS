@@ -18,6 +18,8 @@ struct FinnaCalcIOSApp: App {
             // for previews/QA.
             RootView()
                 .environmentObject(auth)
+                // The renovated design ships DARK-FIRST; light is a future opt-in.
+                .preferredColorScheme(.dark)
                 .task {
                     // Forward the Supabase access token to the API client as a
                     // Bearer (the API doesn't require it yet — PLAN Phase 0).

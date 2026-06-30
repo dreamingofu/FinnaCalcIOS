@@ -50,7 +50,7 @@ private struct MainTabs: View {
                     .frame(width: 56, height: 56)
                     .background(Theme.primary)
                     .clipShape(Circle())
-                    .shadow(color: .black.opacity(0.2), radius: 6, y: 3)
+                    .fcShadow(.brand) // blue-tinted shadow on the FAB
             }
             .padding(.trailing, 16)
             .padding(.bottom, 60)
