@@ -81,6 +81,18 @@ final class APIClient {
         return data
     }
 
+    /// POST a JSON body and return (data, statusCode) WITHOUT throwing on a
+    /// non-2xx status, so the caller can decode a structured error body (e.g.
+    /// /api/efile returns its `{status,message,...}` result with HTTP 501).
+    func postAllowingErrorStatus<Body: Encodable>(_ path: String, body: Body) async throws -> (Data, Int) {
+        let request = try await makeRequest(path, body: body)
+        let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw APIError.message("No response from the server.")
+        }
+        return (data, http.statusCode)
+    }
+
     /// GET a path with query items and decode the JSON response.
     func getJSON<Response: Decodable>(_ path: String, query: [String: String] = [:]) async throws -> Response {
         let data = try await getData(path, query: query)
