@@ -71,4 +71,9 @@ final class AuthManager: ObservableObject {
         await client.signOut()
         user = nil
     }
+
+    /// Current access token for the API Bearer header (nil when signed out).
+    func accessToken() async -> String? {
+        await client.accessToken()
+    }
 }

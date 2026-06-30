@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC0000000000000000000013 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = FC0000000000000000000012 /* Supabase */; };
+		FC0000000000000000000017 /* LinkKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC0000000000000000000016 /* LinkKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC0000000000000000000013 /* Supabase in Frameworks */,
+				FC0000000000000000000017 /* LinkKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +75,7 @@
 			name = FinnaCalcIOS;
 			packageProductDependencies = (
 				FC0000000000000000000012 /* Supabase */,
+				FC0000000000000000000016 /* LinkKit */,
 			);
 			productName = FinnaCalcIOS;
 			productReference = FC0000000000000000000004 /* FinnaCalcIOS.app */;
@@ -105,6 +108,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				FC0000000000000000000011 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				FC0000000000000000000015 /* XCRemoteSwiftPackageReference "plaid-link-ios-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC0000000000000000000003 /* Products */;
@@ -319,6 +323,14 @@
 				minimumVersion = 2.48.0;
 			};
 		};
+		FC0000000000000000000015 /* XCRemoteSwiftPackageReference "plaid-link-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/plaid/plaid-link-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -326,6 +338,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FC0000000000000000000011 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
+		};
+		FC0000000000000000000016 /* LinkKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC0000000000000000000015 /* XCRemoteSwiftPackageReference "plaid-link-ios-spm" */;
+			productName = LinkKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

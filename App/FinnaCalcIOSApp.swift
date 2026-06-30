@@ -18,6 +18,11 @@ struct FinnaCalcIOSApp: App {
             // for previews/QA.
             RootView()
                 .environmentObject(auth)
+                .task {
+                    // Forward the Supabase access token to the API client as a
+                    // Bearer (the API doesn't require it yet — PLAN Phase 0).
+                    APIClient.shared.tokenProvider = { [weak auth] in await auth?.accessToken() }
+                }
         }
     }
 }
