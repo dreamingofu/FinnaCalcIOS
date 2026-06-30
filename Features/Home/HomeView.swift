@@ -35,11 +35,52 @@ struct HomeView: View {
                     }
                     .buttonStyle(.plain)
                 }
+
+                footer
             }
             .padding(24)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Theme.background)
+    }
+
+    // Footer links (the web footer): accessible to everyone, signed in or not.
+    private var footer: some View {
+        VStack(spacing: 10) {
+            Divider().background(Theme.border)
+            HStack(spacing: 0) {
+                footerLink("About") { AboutView() }
+                footerDot
+                footerLink("Premium") { PremiumView() }
+                footerDot
+                footerLink("Advising") { AdvisingView() }
+            }
+            HStack(spacing: 0) {
+                footerLink("Privacy") { PrivacyView() }
+                footerDot
+                footerLink("Terms") { TermsView() }
+            }
+            Text("Educational only — not licensed financial or tax advice.")
+                .font(.system(size: Theme.FontSize.xs))
+                .foregroundStyle(Theme.mutedForeground)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.top, 8)
+    }
+
+    private var footerDot: some View {
+        Text("·").font(.system(size: Theme.FontSize.sm)).foregroundStyle(Theme.mutedForeground).padding(.horizontal, 8)
+    }
+
+    @ViewBuilder
+    private func footerLink<Destination: View>(_ title: String, @ViewBuilder destination: @escaping () -> Destination) -> some View {
+        NavigationLink {
+            destination()
+        } label: {
+            Text(title).font(.system(size: Theme.FontSize.sm)).foregroundStyle(Theme.primary)
+        }
+        .buttonStyle(.plain)
     }
 }
 
