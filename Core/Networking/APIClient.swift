@@ -81,6 +81,38 @@ final class APIClient {
         return data
     }
 
+    /// GET a path with query items and decode the JSON response.
+    func getJSON<Response: Decodable>(_ path: String, query: [String: String] = [:]) async throws -> Response {
+        let data = try await getData(path, query: query)
+        do {
+            return try JSONDecoder().decode(Response.self, from: data)
+        } catch {
+            throw APIError.decoding(error)
+        }
+    }
+
+    @discardableResult
+    func getData(_ path: String, query: [String: String] = [:]) async throws -> Data {
+        var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)
+        if !query.isEmpty {
+            components?.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+        }
+        guard let url = components?.url else { throw APIError.message("Invalid request URL.") }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        if let token = await tokenProvider?() {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        let (data, response) = try await session.data(for: request)
+        guard let http = response as? HTTPURLResponse else {
+            throw APIError.message("No response from the server.")
+        }
+        guard (200..<300).contains(http.statusCode) else {
+            throw APIError.from(data: data, status: http.statusCode)
+        }
+        return data
+    }
+
     /// POST a JSON body and stream the plain-text response. Each yielded value is
     /// the cumulative text received so far (matching the web's `acc` pattern), so
     /// a consumer just assigns it to the message being rendered.
