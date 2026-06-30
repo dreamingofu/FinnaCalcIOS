@@ -28,6 +28,10 @@ private struct MainTabs: View {
     private enum Tab: Hashable { case home, budgeting, investing, taxes, education }
     @State private var selection: Tab = .home
 
+    // FinnaBot lives at the shell so the conversation survives panel open/close.
+    @StateObject private var chat = ChatViewModel()
+    @State private var showChat = false
+
     var body: some View {
         TabView(selection: $selection) {
             screen(.home, "Home", "house") { HomeView() }
@@ -37,6 +41,22 @@ private struct MainTabs: View {
             screen(.education, "Education", "book") { EducationView() }
         }
         .tint(Theme.primary)
+        // Floating FinnaBot button (the web's global chatbot), above the tab bar.
+        .overlay(alignment: .bottomTrailing) {
+            Button { showChat = true } label: {
+                Image(systemName: "message.fill")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundColor(.white)
+                    .frame(width: 56, height: 56)
+                    .background(Theme.primary)
+                    .clipShape(Circle())
+                    .shadow(color: .black.opacity(0.2), radius: 6, y: 3)
+            }
+            .padding(.trailing, 16)
+            .padding(.bottom, 60)
+            .accessibilityLabel("Open FinnaBot")
+        }
+        .sheet(isPresented: $showChat) { FinnaBotView(chat: chat) }
     }
 
     @ViewBuilder
