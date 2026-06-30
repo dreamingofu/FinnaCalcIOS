@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FC0000000000000000000013 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = FC0000000000000000000012 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FC0000000000000000000004 /* FinnaCalcIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinnaCalcIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -13,6 +17,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FC0000000000000000000006 /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
 		FC0000000000000000000007 /* Core */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Core; sourceTree = "<group>"; };
+		FC0000000000000000000014 /* Features */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Features; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -20,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0000000000000000000013 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,6 +37,7 @@
 			children = (
 				FC0000000000000000000006 /* App */,
 				FC0000000000000000000007 /* Core */,
+				FC0000000000000000000014 /* Features */,
 				FC0000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,8 +68,12 @@
 			fileSystemSynchronizedGroups = (
 				FC0000000000000000000006 /* App */,
 				FC0000000000000000000007 /* Core */,
+				FC0000000000000000000014 /* Features */,
 			);
 			name = FinnaCalcIOS;
+			packageProductDependencies = (
+				FC0000000000000000000012 /* Supabase */,
+			);
 			productName = FinnaCalcIOS;
 			productReference = FC0000000000000000000004 /* FinnaCalcIOS.app */;
 			productType = "com.apple.product-type.application";
@@ -92,6 +103,9 @@
 			);
 			mainGroup = FC0000000000000000000002;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FC0000000000000000000011 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FC0000000000000000000003 /* Products */;
 			projectDirPath = "";
@@ -295,6 +309,25 @@
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FC0000000000000000000011 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.48.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FC0000000000000000000012 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC0000000000000000000011 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCConfigurationList section */
 		FC000000000000000000000B /* Build configuration list for PBXProject "FinnaCalcIOS" */ = {
