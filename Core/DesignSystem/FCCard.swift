@@ -20,8 +20,11 @@ import SwiftUI
 
 // MARK: - Card
 
-/// `rounded-lg border bg-card text-card-foreground shadow-sm`
+/// The primary content container — rounded 12, hairline border, soft `shadow-sm`.
+/// Set `interactive` when the whole card navigates somewhere (a touch stronger
+/// elevation to read as tappable).
 struct FCCard<Content: View>: View {
+    var interactive: Bool = false
     @ViewBuilder var content: () -> Content
 
     var body: some View {
@@ -34,10 +37,9 @@ struct FCCard<Content: View>: View {
         .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous))
         .overlay(
             RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous)
-                .strokeBorder(Theme.border, lineWidth: 1) // border
+                .strokeBorder(Theme.border, lineWidth: 1)
         )
-        // shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05)
-        .shadow(color: .black.opacity(0.05), radius: 1, x: 0, y: 1)
+        .fcShadow(interactive ? .md : .sm)
     }
 }
 
@@ -70,7 +72,7 @@ struct FCCardTitle: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.xl2, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.xl2, weight: .semibold))
             .tracking(-0.6)         // tracking-tight (-0.025em @ 24pt)
             .lineSpacing(0)         // leading-none (best-effort; see note above)
             .foregroundStyle(Theme.cardForeground)
@@ -85,7 +87,7 @@ struct FCCardDescription: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundStyle(Theme.mutedForeground)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -140,7 +142,7 @@ private struct FCCardGallery: View {
                 }
                 FCCardContent {
                     Text("Card content goes here.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundStyle(Theme.foreground)
                 }
                 FCCardFooter {

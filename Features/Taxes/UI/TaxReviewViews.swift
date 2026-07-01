@@ -79,14 +79,14 @@ struct ReviewScreen: View {
     private var header: some View {
         VStack(spacing: 4) { // space-y-1
             Text("Review your estimate")
-                .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                 .foregroundStyle(Theme.foreground)
             Text(
                 result.owes
                     ? "You owe an estimated \(CalcFormat.currency(abs(result.refundOrOwed), fraction: 0))."
                     : "You're getting an estimated \(CalcFormat.currency(result.refundOrOwed, fraction: 0)) refund."
             )
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundStyle(Theme.mutedForeground)
             .multilineTextAlignment(.center)
         }
@@ -128,7 +128,7 @@ struct ReviewScreen: View {
                     ForEach(vm.visibleSections, id: \.id) { section in
                         HStack {
                             Text(section.title)
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundStyle(Theme.foreground)
                             Spacer()
                             FCButton(variant: .ghost, size: .sm, label: {
@@ -166,10 +166,10 @@ struct ReviewScreen: View {
                                 + Text("  \(line.formRef)")
                                     .foregroundColor(Theme.mutedForeground.opacity(0.7))
                             )
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             Spacer()
                             Text(CalcFormat.currency(line.amount))
-                                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                 .monospacedDigit() // tabular-nums
                                 .foregroundColor(Theme.foreground)
                         }
@@ -280,7 +280,7 @@ struct FilingScreen: View {
                                         .foregroundColor(acknowledged ? Theme.primary : Theme.mutedForeground)
                                         .padding(.top, 1)
                                     Text("I understand this is an estimate and want to continue.")
-                                        .font(.system(size: Theme.FontSize.sm))
+                                        .font(Theme.sans(Theme.FontSize.sm))
                                         .foregroundColor(Theme.mutedForeground)
                                         .multilineTextAlignment(.leading)
                                     Spacer(minLength: 0)
@@ -409,7 +409,7 @@ struct FilingScreen: View {
                     ForEach(Array(summary.groups.enumerated()), id: \.offset) { _, group in
                         VStack(alignment: .leading, spacing: 6) {
                             Text(group.title)
-                                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
                             ForEach(Array(group.lines.enumerated()), id: \.offset) { _, line in
                                 HStack(alignment: .firstTextBaseline) {
@@ -419,10 +419,10 @@ struct FilingScreen: View {
                                         + Text(line.formRef.map { "  \($0)" } ?? "")
                                             .foregroundColor(Theme.mutedForeground.opacity(0.7))
                                     )
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     Spacer()
                                     Text(CalcFormat.currency(line.amount))
-                                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                         .monospacedDigit()
                                         .foregroundColor(Theme.foreground)
                                 }
@@ -434,11 +434,11 @@ struct FilingScreen: View {
 
                     HStack(alignment: .firstTextBaseline) {
                         Text(summary.headline.label)
-                            .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                            .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                             .foregroundColor(Theme.foreground)
                         Spacer()
                         Text(CalcFormat.currency(summary.headline.amount, fraction: 0))
-                            .font(.system(size: Theme.FontSize.base, weight: .bold))
+                            .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                             .monospacedDigit()
                             .foregroundColor(summary.headline.owes ? Theme.destructive : Theme.primary)
                     }
@@ -447,7 +447,7 @@ struct FilingScreen: View {
                         Divider().background(Theme.border)
                         VStack(alignment: .leading, spacing: 6) {
                             Text(state.name)
-                                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
                             if state.hasIncomeTax {
                                 summaryRow("State tax", CalcFormat.currency(state.tax))
@@ -457,7 +457,7 @@ struct FilingScreen: View {
                                 )
                             } else if let note = state.note {
                                 Text(note)
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.mutedForeground)
                             }
                         }
@@ -470,11 +470,11 @@ struct FilingScreen: View {
     private func summaryRow(_ label: String, _ value: String) -> some View {
         HStack {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
             Spacer()
             Text(value)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .monospacedDigit()
                 .foregroundColor(Theme.foreground)
         }
@@ -533,11 +533,11 @@ private struct AlertBox: View {
             VStack(alignment: .leading, spacing: 4) {
                 if let title {
                     Text(title)
-                        .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                         .foregroundColor(destructive ? Theme.destructive : Theme.foreground)
                 }
                 Text(message)
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(destructive ? Theme.destructive : Theme.mutedForeground)
                     .fixedSize(horizontal: false, vertical: true)
             }

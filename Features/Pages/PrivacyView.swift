@@ -33,7 +33,7 @@ struct PrivacyView: View {
 
                 // Header — text-4xl font-bold, centered
                 Text("Privacy Policy")
-                    .font(.system(size: 36, weight: .bold))
+                    .font(Theme.sans(36, weight: .bold))
                     .foregroundColor(Theme.foreground)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, 4)
@@ -192,11 +192,11 @@ struct PrivacyView: View {
                 HStack(spacing: 8) { // flex items-center gap-2
                     if let icon {
                         Image(systemName: icon)
-                            .font(.system(size: Theme.FontSize.xl2 * 0.85, weight: .regular))
+                            .font(Theme.sans(Theme.FontSize.xl2 * 0.85, weight: .regular))
                             .foregroundColor(iconColor)
                     }
                     Text(title)
-                        .font(.system(size: Theme.FontSize.xl2, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .semibold))
                         .tracking(-0.6)
                         .foregroundColor(Theme.cardForeground)
                         .fixedSize(horizontal: false, vertical: true)
@@ -215,7 +215,7 @@ struct PrivacyView: View {
     /// `text-muted-foreground` body paragraph.
     private func paragraph(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.base))
+            .font(Theme.sans(Theme.FontSize.base))
             .foregroundColor(Theme.mutedForeground)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -224,7 +224,7 @@ struct PrivacyView: View {
     /// `text-lg font-semibold text-foreground` subsection heading.
     private func subheading(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: 18, weight: .semibold))
+            .font(Theme.sans(18, weight: .semibold))
             .foregroundColor(Theme.foreground)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -240,7 +240,7 @@ struct PrivacyView: View {
                     Text(item)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(Theme.mutedForeground)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -256,7 +256,7 @@ struct PrivacyView: View {
                     (Text(lead).fontWeight(.bold) + Text(rest))
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(Theme.mutedForeground)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -266,7 +266,7 @@ struct PrivacyView: View {
     /// Highlighted callout box (web `bg-*-50` with `text-*-800`).
     private func callout(boldLead: String, body: String, tint: Color, textColor: Color) -> some View {
         (Text(boldLead).fontWeight(.bold) + Text(body))
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundColor(textColor)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -288,7 +288,7 @@ struct PrivacyView: View {
                 Text(email).foregroundColor(Theme.mutedForeground)
             }
         }
-        .font(.system(size: Theme.FontSize.base))
+        .font(Theme.sans(Theme.FontSize.base))
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 

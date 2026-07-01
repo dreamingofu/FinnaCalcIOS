@@ -83,10 +83,10 @@ struct InvestingView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Investing")
-                .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                 .foregroundColor(Theme.foreground)
             Text("Live markets, your portfolio, and stock research in one place.")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -99,10 +99,10 @@ struct InvestingView: View {
             HStack(spacing: 8) {
                 HStack(spacing: 8) {
                     Image(systemName: "magnifyingglass")
-                        .font(.system(size: 14))
+                        .font(Theme.sans(14))
                         .foregroundColor(Theme.mutedForeground)
                     TextField("Search any stock — e.g. Apple, TSLA", text: $searchTerm)
-                        .font(.system(size: Theme.FontSize.base))
+                        .font(Theme.sans(Theme.FontSize.base))
                         .foregroundColor(Theme.foreground)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.characters)
@@ -131,14 +131,14 @@ struct InvestingView: View {
 
             if isSearching {
                 Text("Searching…")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                     .padding(.horizontal, 4)
             } else if !searchResults.isEmpty {
                 searchResultsList
             } else if searchTerm.trimmingCharacters(in: .whitespaces).count >= 2 {
                 Text("No results found.")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                     .padding(.horizontal, 4)
             }
@@ -155,16 +155,16 @@ struct InvestingView: View {
                         logoBadge(result.symbol)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(result.symbol)
-                                .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                                 .foregroundColor(Theme.foreground)
                             Text(result.name)
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundColor(Theme.mutedForeground)
                                 .lineLimit(1)
                         }
                         Spacer(minLength: 8)
                         Image(systemName: "chevron.right")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Theme.sans(12, weight: .semibold))
                             .foregroundColor(Theme.mutedForeground)
                     }
                     .padding(.vertical, 10)
@@ -191,7 +191,7 @@ struct InvestingView: View {
         let first = symbol.first.map(String.init) ?? "?"
         let color = palette[Int(symbol.utf8.first ?? 0) % palette.count]
         return Text(first)
-            .font(.system(size: 15, weight: .bold))
+            .font(Theme.sans(15, weight: .bold))
             .foregroundColor(.white)
             .frame(width: 32, height: 32)
             .background(color)
@@ -236,7 +236,7 @@ struct InvestingView: View {
     private var researchSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Research & Learn")
-                .font(.system(size: Theme.FontSize.base, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                 .foregroundColor(Theme.foreground)
                 .padding(.top, 4)
 
@@ -244,28 +244,28 @@ struct InvestingView: View {
                 icon: "chart.line.uptrend.xyaxis",
                 title: "Stocks",
                 subtitle: "Quotes, charts, and company research",
-                tint: Theme.primary
+                iconTone: .neutral
             ) { StocksPageView() }
 
             entryLink(
                 icon: "building.columns",
                 title: "Bonds",
                 subtitle: "Treasury yields and fixed income",
-                tint: Theme.positive
+                iconTone: .positive
             ) { BondsPageView() }
 
             entryLink(
                 icon: "shield.lefthalf.filled",
                 title: "Safe Investments",
                 subtitle: "CDs, savings, and money-market options",
-                tint: Theme.primary
+                iconTone: .neutral
             ) { SafeInvestmentsView() }
 
             entryLink(
                 icon: "graduationcap",
                 title: "Investing 101",
                 subtitle: "Learn the fundamentals of investing",
-                tint: Theme.negative
+                iconTone: .negative
             ) { InvestmentEducationView() }
         }
     }
@@ -274,38 +274,14 @@ struct InvestingView: View {
         icon: String,
         title: String,
         subtitle: String,
-        tint: Color,
+        iconTone: FCResultTone,
         @ViewBuilder destination: @escaping () -> Destination
     ) -> some View {
         NavigationLink {
             destination()
         } label: {
-            FCCard {
-                FCCardContent {
-                    HStack(spacing: 14) {
-                        Image(systemName: icon)
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundColor(tint)
-                            .frame(width: 40, height: 40)
-                            .background(tint.opacity(0.12))
-                            .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.md, style: .continuous))
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(title)
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
-                                .foregroundColor(Theme.foreground)
-                            Text(subtitle)
-                                .font(.system(size: Theme.FontSize.xs))
-                                .foregroundColor(Theme.mutedForeground)
-                                .lineLimit(2)
-                        }
-                        Spacer(minLength: 8)
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundColor(Theme.mutedForeground)
-                    }
-                    .padding(.vertical, 6)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
+            FCCard(interactive: true) {
+                FCListRow(icon: icon, iconTone: iconTone, title: title, subtitle: subtitle)
             }
         }
         .buttonStyle(.plain)

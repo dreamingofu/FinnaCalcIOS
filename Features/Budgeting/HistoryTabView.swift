@@ -43,7 +43,7 @@ struct HistoryTabView: View {
             FCCardContent {
                 if store.history.isEmpty {
                     Text("No budget history saved yet. Save a snapshot from the \"Budget\" tab!")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                         .multilineTextAlignment(.center)
                         .frame(maxWidth: .infinity)
@@ -101,14 +101,14 @@ private struct HistoryEntryRow: View {
         HStack(alignment: .center, spacing: 8) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(entry.name)
-                    .font(.system(size: 18, weight: .semibold)) // text-lg font-semibold
+                    .font(Theme.sans(18, weight: .semibold)) // text-lg font-semibold
                     .foregroundColor(Theme.foreground)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(HistoryDate.range(entry.startDate, entry.endDate))
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                 Text("\(entry.budgetType.title) Budget")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             Spacer(minLength: 8)
@@ -166,20 +166,20 @@ private struct SaveSnapshotSheet: View {
                             selection: $startDate,
                             displayedComponents: .date
                         )
-                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                         .foregroundColor(Theme.foreground)
                         DatePicker(
                             "End Date",
                             selection: $endDate,
                             displayedComponents: .date
                         )
-                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                         .foregroundColor(Theme.foreground)
                     }
 
                     if let errorText {
                         Text(errorText)
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.negative)
                     }
                 }
@@ -202,7 +202,7 @@ private struct SaveSnapshotSheet: View {
 
     private func fieldLabel(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
             .foregroundColor(Theme.foreground)
     }
 
@@ -279,7 +279,7 @@ private struct HistoryDetailSheet: View {
                         + " to "
                         + HistoryDate.long(entry.endDate) + "."
                     )
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                     .fixedSize(horizontal: false, vertical: true)
 
@@ -331,11 +331,11 @@ private struct HistoryDetailSheet: View {
     private func totalCard(_ label: String, _ value: String, _ color: Color) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .fixedSize(horizontal: false, vertical: true)
             Text(value)
-                .font(.system(size: 20, weight: .bold)) // text-xl font-bold
+                .font(Theme.sans(20, weight: .bold)) // text-xl font-bold
                 .foregroundColor(color)
                 .minimumScaleFactor(0.6)
                 .lineLimit(1)
@@ -354,7 +354,7 @@ private struct HistoryDetailSheet: View {
     private func sectionHeader(_ title: String) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundColor(Theme.foreground)
             Divider().background(Theme.border)
         }
@@ -362,7 +362,7 @@ private struct HistoryDetailSheet: View {
 
     private func emptyLine(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundColor(Theme.mutedForeground)
     }
 
@@ -374,7 +374,7 @@ private struct HistoryDetailSheet: View {
             ForEach(groups, id: \.category) { group in
                 VStack(alignment: .leading, spacing: 8) {
                     Text(group.category)
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundColor(Theme.foreground)
                     VStack(spacing: 8) { // space-y-2
                         ForEach(group.items) { item in
@@ -390,7 +390,7 @@ private struct HistoryDetailSheet: View {
     private func itemRow(_ item: BudgetItem, isIncome: Bool) -> some View {
         HStack(alignment: .center, spacing: 8) {
             Text(item.subcategory.isEmpty ? "No description" : item.subcategory)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.primary) // text-blue-600
                 .lineLimit(1)
             Spacer(minLength: 8)
@@ -399,7 +399,7 @@ private struct HistoryDetailSheet: View {
                 + CalcFormat.currency(item.amount)
                 + " (\(item.frequency.rawValue))"
             )
-            .font(.system(size: Theme.FontSize.sm, weight: .bold))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
             .foregroundColor(isIncome ? Theme.positive : Theme.negative)
         }
         .padding(8) // p-2

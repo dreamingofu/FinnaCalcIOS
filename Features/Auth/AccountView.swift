@@ -20,10 +20,10 @@ struct AccountView: View {
                     if let user = auth.user {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(user.displayName)
-                                .font(.system(size: 20, weight: .semibold))
+                                .font(Theme.sans(20, weight: .semibold))
                                 .foregroundStyle(Theme.foreground)
                             Text(user.email)
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundStyle(Theme.mutedForeground)
                         }
                     }
@@ -75,11 +75,11 @@ struct AccountView: View {
         } label: {
             HStack {
                 Text(title)
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundStyle(Theme.foreground)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(Theme.sans(13, weight: .semibold))
                     .foregroundStyle(Theme.mutedForeground)
             }
             .padding(.horizontal, 16)

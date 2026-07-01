@@ -181,15 +181,15 @@ struct BudgetAdvisorView: View {
                                 .fill(accentBlue)
                                 .frame(width: 32, height: 32)
                             Image(systemName: "sparkles")
-                                .font(.system(size: 16))
+                                .font(Theme.sans(16))
                                 .foregroundColor(.white)
                         }
                         VStack(alignment: .leading, spacing: 2) {
                             Text("Budget Analysis")
-                                .font(.system(size: 18, weight: .semibold))
+                                .font(Theme.sans(18, weight: .semibold))
                                 .foregroundColor(Theme.cardForeground)
                             Text("Personalized insights for your \(store.budgetType.rawValue) budget")
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -212,10 +212,10 @@ struct BudgetAdvisorView: View {
                 if !hasData {
                     VStack(spacing: 12) {
                         Image(systemName: "chart.line.uptrend.xyaxis")
-                            .font(.system(size: 40))
+                            .font(Theme.sans(40))
                             .foregroundColor(Theme.mutedForeground)
                         Text("Add some income and expenses in the Budget tab, then come back for a personalized analysis.")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.mutedForeground)
                             .multilineTextAlignment(.center)
                     }
@@ -233,14 +233,14 @@ struct BudgetAdvisorView: View {
         var text = Text("Top expense: ")
             .foregroundColor(Theme.mutedForeground)
         text = text + Text(top?.name ?? "—")
-            .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
             .foregroundColor(Theme.foreground)
         if let top {
             text = text + Text(" · \(CalcFormat.currency(top.value, fraction: 0))/mo")
                 .foregroundColor(Theme.mutedForeground)
         }
         return text
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -261,7 +261,7 @@ struct BudgetAdvisorView: View {
                                     ProgressView()
                                         .scaleEffect(0.8)
                                     Text(depth == .deep ? "Running a deep analysis…" : "Analyzing your budget…")
-                                        .font(.system(size: Theme.FontSize.sm))
+                                        .font(Theme.sans(Theme.FontSize.sm))
                                         .foregroundColor(Theme.mutedForeground)
                                 }
                                 .id("loading")
@@ -269,10 +269,10 @@ struct BudgetAdvisorView: View {
                             if let errorText {
                                 HStack(alignment: .top, spacing: 8) {
                                     Image(systemName: "exclamationmark.triangle.fill")
-                                        .font(.system(size: 14))
+                                        .font(Theme.sans(14))
                                         .foregroundColor(Theme.destructive)
                                     Text(errorText)
-                                        .font(.system(size: Theme.FontSize.xs))
+                                        .font(Theme.sans(Theme.FontSize.xs))
                                         .foregroundColor(Theme.destructive)
                                 }
                                 .padding(.horizontal, 12)
@@ -325,7 +325,7 @@ struct BudgetAdvisorView: View {
             HStack {
                 Spacer(minLength: 0)
                 Text(m.content)
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(.white)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
@@ -479,19 +479,19 @@ private struct MarkdownText: View {
         switch block {
         case let .heading(_, level, text):
             inline(text)
-                .font(.system(size: level <= 2 ? Theme.FontSize.base : Theme.FontSize.sm,
+                .font(Theme.sans(level <= 2 ? Theme.FontSize.base : Theme.FontSize.sm,
                               weight: level <= 2 ? .bold : .semibold))
                 .padding(.top, level <= 2 ? 10 : 8)
                 .padding(.bottom, 2)
         case let .paragraph(_, text):
             inline(text)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.cardForeground)
                 .lineSpacing(3)
                 .padding(.vertical, 2)
         case let .italic(_, text):
             inline(text)
-                .font(.system(size: Theme.FontSize.xs).italic())
+                .font(Theme.sans(Theme.FontSize.xs).italic())
                 .foregroundColor(Theme.mutedForeground)
                 .padding(.top, 8)
         case let .list(_, ordered, items):
@@ -499,10 +499,10 @@ private struct MarkdownText: View {
                 ForEach(Array(items.enumerated()), id: \.offset) { idx, item in
                     HStack(alignment: .top, spacing: 8) {
                         Text(ordered ? "\(idx + 1)." : "•")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.cardForeground)
                         inline(item)
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.cardForeground)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }

@@ -63,10 +63,10 @@ struct MarketsDashboardView: View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Market Overview")
-                    .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                     .foregroundColor(Theme.foreground)
                 Text(timestampLabel)
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             Spacer()
@@ -95,7 +95,7 @@ struct MarketsDashboardView: View {
                 VStack(spacing: 12) {
                     ProgressView()
                     Text("Loading market data…")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                 }
                 .frame(maxWidth: .infinity)
@@ -109,14 +109,14 @@ struct MarketsDashboardView: View {
             FCCardContent {
                 VStack(spacing: 12) {
                     Image(systemName: "exclamationmark.triangle")
-                        .font(.system(size: 28))
+                        .font(Theme.sans(28))
                         .foregroundColor(Theme.destructive)
                     Text("Could not load market data")
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundColor(Theme.foreground)
                     if let errorMessage {
                         Text(errorMessage)
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.mutedForeground)
                             .multilineTextAlignment(.center)
                     }
@@ -152,10 +152,10 @@ struct MarketsDashboardView: View {
             FCCardContent {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(label)
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                     Text(value)
-                        .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         .foregroundColor(tint)
                 }
                 .padding(.top, 16)
@@ -175,7 +175,7 @@ struct MarketsDashboardView: View {
             FCCardContent {
                 if sectors.isEmpty {
                     Text("No sector data available.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                         .padding(.vertical, 12)
                 } else {
@@ -187,7 +187,7 @@ struct MarketsDashboardView: View {
                         .foregroundStyle(changeColor(sector.avgChange))
                         .annotation(position: sector.avgChange >= 0 ? .trailing : .leading) {
                             Text(signedPercent(sector.avgChange))
-                                .font(.system(size: 10))
+                                .font(Theme.sans(10))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -219,7 +219,7 @@ struct MarketsDashboardView: View {
             FCCardContent {
                 if stocks.isEmpty {
                     Text("No data available.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                         .padding(.vertical, 8)
                 } else {
@@ -245,20 +245,20 @@ struct MarketsDashboardView: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(stock.symbol)
-                    .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                     .foregroundColor(Theme.foreground)
                 Text(stock.name)
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
                     .lineLimit(1)
             }
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 2) {
                 Text(CalcFormat.currency(stock.price))
-                    .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                     .foregroundColor(Theme.foreground)
                 Text(signedPercent(stock.changesPercentage))
-                    .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
                     .foregroundColor(changeColor(stock.changesPercentage))
             }
         }

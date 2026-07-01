@@ -224,7 +224,7 @@ struct LoanCalculatorView: View {
                 CalcField(label: "Loan Term (years)", placeholder: "5", text: $termAPR)
             }
             Text("APR computed using Newton-Raphson IRR to match US Regulation Z — more accurate than the simple average-cost method.")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
         }
     }

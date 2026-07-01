@@ -20,7 +20,7 @@ struct TaxesView: View {
         VStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 12) {
                 Text("Estimate your federal taxes and explore tools to optimize your strategy.")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundStyle(Theme.mutedForeground)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Picker("", selection: $tab) {

@@ -75,7 +75,7 @@ struct GoalsTabView: View {
 
                     if store.goals.isEmpty {
                         Text("No savings goals yet. Add one to start tracking!")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.mutedForeground)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding(.vertical, 16)
@@ -102,7 +102,7 @@ struct GoalsTabView: View {
     private var addGoalForm: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("New Savings Goal")
-                .font(.system(size: Theme.FontSize.xl2 - 4, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.xl2 - 4, weight: .semibold))
                 .foregroundColor(Theme.foreground)
 
             field(label: "Goal Name") {
@@ -150,7 +150,7 @@ struct GoalsTabView: View {
     private func field<Content: View>(label: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.foreground)
             content()
         }
@@ -166,7 +166,7 @@ struct GoalsTabView: View {
             // Title + actions
             HStack(alignment: .center) {
                 Text(goal.name)
-                    .font(.system(size: Theme.FontSize.xl2 - 6, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.xl2 - 6, weight: .semibold))
                     .foregroundColor(Theme.foreground)
                 Spacer(minLength: 8)
                 HStack(spacing: 8) {
@@ -188,7 +188,7 @@ struct GoalsTabView: View {
                 Spacer(minLength: 8)
                 Text("Saved: " + CalcFormat.currency(goal.currentAmount, fraction: 2))
             }
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundColor(Theme.mutedForeground)
 
             // Progress bar (clamped to 0...1)
@@ -209,7 +209,7 @@ struct GoalsTabView: View {
                         .foregroundColor(Theme.positive)
                 }
             }
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundColor(Theme.mutedForeground)
 
             // Detail lines (only while incomplete), mirroring the web.
@@ -234,7 +234,7 @@ struct GoalsTabView: View {
                         warningAlert
                     }
                 }
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
             }
         }
@@ -255,9 +255,9 @@ struct GoalsTabView: View {
                 Image(systemName: "exclamationmark.triangle")
                 Text("Warning").fontWeight(.semibold)
             }
-            .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
             Text("Your planned monthly contribution is less than what's needed to reach your goal by the target date!")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
         }
         .foregroundColor(Theme.negative)
         .padding(12)
@@ -367,12 +367,12 @@ private struct AddFundsSheet: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Enter the amount you want to add to this savings goal.")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
 
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Amount")
-                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                         .foregroundColor(Theme.foreground)
                     FCTextField("0.00", text: $amount, keyboardType: .decimalPad)
                 }

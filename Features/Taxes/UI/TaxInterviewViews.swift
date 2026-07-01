@@ -136,7 +136,7 @@ struct QuestionCard: View {
         HStack(alignment: .top, spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(question.text)
-                    .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     .foregroundColor(Theme.foreground)
                     .fixedSize(horizontal: false, vertical: true)
                 if let help = question.helpText {
@@ -159,7 +159,7 @@ struct QuestionCard: View {
     private var selectCard: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(question.text)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.foreground)
                 .fixedSize(horizontal: false, vertical: true)
             if let help = question.helpText {
@@ -184,10 +184,10 @@ struct QuestionCard: View {
                     .foregroundColor(selectedLabel == nil ? Theme.mutedForeground : Theme.foreground)
                 Spacer()
                 Image(systemName: "chevron.up.chevron.down")
-                    .font(.system(size: 12))
+                    .font(Theme.sans(12))
                     .foregroundColor(Theme.mutedForeground)
             }
-            .font(.system(size: Theme.FontSize.base))
+            .font(Theme.sans(Theme.FontSize.base))
             .frame(height: 40)
             .padding(.horizontal, 12)
             .frame(maxWidth: .infinity)
@@ -204,7 +204,7 @@ struct QuestionCard: View {
     private var fieldCard: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(question.text)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.foreground)
                 .fixedSize(horizontal: false, vertical: true)
             if let help = question.helpText {
@@ -220,7 +220,7 @@ struct QuestionCard: View {
         HStack(spacing: 6) {
             if question.inputType == .dollar {
                 Text("$")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
             }
             FCTextField(
@@ -279,7 +279,7 @@ struct QuestionCard: View {
 
     private func helpView(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.xs))
+            .font(Theme.sans(Theme.FontSize.xs))
             .foregroundColor(Theme.mutedForeground)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -328,17 +328,17 @@ struct RefundMeter: View {
     private var headline: some View {
         VStack(spacing: 4) {
             Text(owes ? "Estimated amount you owe" : "Estimated federal refund")
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
             Text(TaxFormat.currency(amount, cents: false))
-                .font(.system(size: 36, weight: .bold))
+                .font(Theme.sans(36, weight: .bold))
                 .monospacedDigit()
                 .foregroundColor(owes ? Theme.destructive : Theme.primary)
                 .minimumScaleFactor(0.5)
                 .lineLimit(1)
             Text("Federal estimate")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
         }
         .frame(maxWidth: .infinity)
@@ -384,16 +384,16 @@ struct RefundMeter: View {
                         .monospacedDigit()
                         .foregroundColor(state.refundOrOwed < 0 ? Theme.destructive : Theme.primary)
                 }
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 Text("State tax \(TaxFormat.currency(state.tax, cents: false))")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             .padding(.top, 12)
             .overlay(topBorder, alignment: .top)
         } else if let state = result.state, !state.hasIncomeTax {
             Text("\(state.name): no state income tax. 🎉")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
                 .padding(.top, 12)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -408,7 +408,7 @@ struct RefundMeter: View {
             Spacer()
             Text("Effective rate: \(TaxFormat.percent(result.effectiveRate, 1))")
         }
-        .font(.system(size: Theme.FontSize.xs))
+        .font(Theme.sans(Theme.FontSize.xs))
         .foregroundColor(Theme.mutedForeground)
         .padding(.top, 12)
         .overlay(topBorder, alignment: .top)
@@ -433,7 +433,7 @@ struct RefundMeter: View {
                     .monospacedDigit()
                     .foregroundColor(Theme.foreground)
             }
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
@@ -567,7 +567,7 @@ struct TaxInterview: View {
                 RefundMeter(result: vm.result)
                 if phase == .sections {
                     Text("Step \(clampedIndex + 1) of \(visibleSections.count)")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                         .frame(maxWidth: .infinity)
                 }
@@ -601,7 +601,7 @@ struct TaxInterview: View {
                         HStack(spacing: 8) {
                             if let symbol = TaxIcons.symbol(section.icon) {
                                 Image(systemName: symbol)
-                                    .font(.system(size: 18))
+                                    .font(Theme.sans(18))
                                     .foregroundColor(Theme.primary)
                             }
                             FCCardTitle(section.title)
@@ -614,7 +614,7 @@ struct TaxInterview: View {
                         VStack(alignment: .leading, spacing: 12) {
                             if currentQuestions.isEmpty {
                                 Text("Nothing to enter here based on your answers — continue.")
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.mutedForeground)
                             }
                             ForEach(currentQuestions, id: \.id) { q in

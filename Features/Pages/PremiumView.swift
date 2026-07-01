@@ -27,7 +27,7 @@ struct PremiumView: View {
                     AboutView()
                 } label: {
                     Text("Learn more about FinnaCalc")
-                        .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                         .foregroundColor(Theme.primary)
                 }
                 .buttonStyle(.plain)
@@ -44,10 +44,10 @@ struct PremiumView: View {
     private var hero: some View {
         VStack(spacing: 12) {
             Image(systemName: "crown.fill")
-                .font(.system(size: 40))
+                .font(Theme.sans(40))
                 .foregroundColor(gold)
             Text("FinnaCalc Premium")
-                .font(.system(size: 30, weight: .bold))
+                .font(Theme.sans(30, weight: .bold))
                 .foregroundColor(Theme.foreground)
             FCBadge("Coming Soon", variant: .secondary)
         }
@@ -68,7 +68,7 @@ struct PremiumView: View {
             FCCardContent {
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Be the first to know when Premium launches.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                     HStack(spacing: 8) {
                         FCTextField("you@example.com", text: $email, keyboardType: .emailAddress)
@@ -77,11 +77,11 @@ struct PremiumView: View {
                     }
                     if let message {
                         Text(message)
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(messageIsError ? Theme.destructive : Theme.positive)
                     }
                     Text("No spam — just one email when it's ready. Waitlist members get 60% off forever.")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                 }
             }
@@ -89,7 +89,7 @@ struct PremiumView: View {
     }
 
     private var star: some View {
-        Image(systemName: "star.fill").font(.system(size: 14)).foregroundColor(gold)
+        Image(systemName: "star.fill").font(Theme.sans(14)).foregroundColor(gold)
     }
 
     private func joinWaitlist() {

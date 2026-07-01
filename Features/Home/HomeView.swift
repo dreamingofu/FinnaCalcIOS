@@ -19,12 +19,12 @@ struct HomeView: View {
                     FCWordmark(size: 34)
                     Text(auth.user.map { "Welcome back, \($0.displayName)." }
                          ?? "Free, accurate financial calculators.")
-                        .font(.system(size: Theme.FontSize.base))
+                        .font(Theme.sans(Theme.FontSize.base))
                         .foregroundStyle(Theme.mutedForeground)
                 }
 
                 Text("Choose your calculator")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(Theme.sans(18, weight: .semibold))
                     .foregroundStyle(Theme.foreground)
 
                 ForEach(CalculatorKind.allCases) { calc in
@@ -61,7 +61,7 @@ struct HomeView: View {
                 footerLink("Terms") { TermsView() }
             }
             Text("Educational only — not licensed financial or tax advice.")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
         }
@@ -70,7 +70,7 @@ struct HomeView: View {
     }
 
     private var footerDot: some View {
-        Text("·").font(.system(size: Theme.FontSize.sm)).foregroundStyle(Theme.mutedForeground).padding(.horizontal, 8)
+        Text("·").font(Theme.sans(Theme.FontSize.sm)).foregroundStyle(Theme.mutedForeground).padding(.horizontal, 8)
     }
 
     @ViewBuilder
@@ -78,7 +78,7 @@ struct HomeView: View {
         NavigationLink {
             destination()
         } label: {
-            Text(title).font(.system(size: Theme.FontSize.sm)).foregroundStyle(Theme.primary)
+            Text(title).font(Theme.sans(Theme.FontSize.sm)).foregroundStyle(Theme.primary)
         }
         .buttonStyle(.plain)
     }
@@ -88,27 +88,8 @@ private struct CalculatorCard: View {
     let calc: CalculatorKind
 
     var body: some View {
-        FCCard {
-            FCCardHeader {
-                HStack(alignment: .top, spacing: 12) {
-                    Image(systemName: calc.icon)
-                        .font(.system(size: 22, weight: .semibold))
-                        .foregroundStyle(Theme.primary)
-                        .frame(width: 28)
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(calc.title)
-                            .font(.system(size: 18, weight: .semibold))
-                            .foregroundStyle(Theme.cardForeground)
-                        FCCardDescription(calc.summary)
-                        FCBadge(calc.category, variant: .secondary)
-                            .padding(.top, 2)
-                    }
-                    Spacer(minLength: 0)
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(Theme.mutedForeground)
-                }
-            }
+        FCCard(interactive: true) {
+            FCListRow(icon: calc.icon, title: calc.title, subtitle: calc.summary)
         }
     }
 }

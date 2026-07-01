@@ -151,7 +151,7 @@ struct ProfitMarginCalculatorView: View {
 
     private func hint(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.xs))
+            .font(Theme.sans(Theme.FontSize.xs))
             .foregroundStyle(Theme.mutedForeground)
     }
 
@@ -166,7 +166,7 @@ struct ProfitMarginCalculatorView: View {
             case .success(let r):
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Profit Margin Analysis")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(Theme.sans(18, weight: .semibold))
                         .foregroundStyle(Theme.foreground)
 
                     marginGrid(r)
@@ -215,7 +215,7 @@ struct ProfitMarginCalculatorView: View {
                 emphasized: emphasized
             )
             Text(sublabel)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.mutedForeground)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -225,7 +225,7 @@ struct ProfitMarginCalculatorView: View {
     private func incomeStatement(_ r: ProfitMarginCalc.Output) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Income Statement")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
 
             VStack(spacing: 8) {
@@ -296,11 +296,11 @@ struct ProfitMarginCalculatorView: View {
             }
             HStack {
                 Text(label)
-                    .font(.system(size: Theme.FontSize.sm, weight: labelWeight))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: labelWeight))
                     .foregroundStyle(muted ? Theme.mutedForeground : Theme.foreground)
                 Spacer()
                 Text(value)
-                    .font(.system(size: Theme.FontSize.sm, weight: valueWeight))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: valueWeight))
                     .foregroundStyle(valueColor ?? (muted ? Theme.mutedForeground : Theme.foreground))
             }
         }
@@ -310,7 +310,7 @@ struct ProfitMarginCalculatorView: View {
     private var industryBenchmarks: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Industry Benchmarks")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
 
             LazyVGrid(
@@ -321,13 +321,13 @@ struct ProfitMarginCalculatorView: View {
                 ForEach(benchmarks) { b in
                     VStack(alignment: .leading, spacing: 2) {
                         Text(b.name)
-                            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                             .foregroundStyle(Theme.foreground)
                         Text("Gross: \(b.gross)")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundStyle(Theme.mutedForeground)
                         Text("Net: \(b.net)")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundStyle(Theme.mutedForeground)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)

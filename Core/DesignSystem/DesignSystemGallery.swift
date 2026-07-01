@@ -50,7 +50,7 @@ struct DesignSystemGallery: View {
                         }
                         FCCardContent {
                             Text("3.5 months")
-                                .font(.system(size: Theme.FontSize.base, weight: .medium))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .medium))
                                 .foregroundStyle(Theme.foreground)
                         }
                         FCCardFooter {
@@ -69,7 +69,7 @@ struct DesignSystemGallery: View {
     private func section<Content: View>(_ title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(title)
-                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                 .foregroundStyle(Theme.mutedForeground)
             content()
         }

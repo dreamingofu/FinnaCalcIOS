@@ -136,10 +136,10 @@ struct SmartSuggestions: View {
                 // CardHeader (pb-3) + CardTitle (flex items-center gap-2 text-base)
                 HStack(spacing: 8) {
                     Image(systemName: "lightbulb")
-                        .font(.system(size: 20))
+                        .font(Theme.sans(20))
                         .foregroundColor(Theme.primary) // text-primary
                     Text("You might be leaving money on the table")
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundColor(Theme.cardForeground)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -152,10 +152,10 @@ struct SmartSuggestions: View {
                     ForEach(Array(suggestions.enumerated()), id: \.offset) { _, s in
                         HStack(alignment: .top, spacing: 8) { // li flex gap-2
                             Text("\u{2022}") // bullet, text-primary
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.primary)
                             Text(s) // text-sm text-muted-foreground
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.mutedForeground)
                                 .fixedSize(horizontal: false, vertical: true)
                         }
@@ -201,12 +201,12 @@ struct LifeSituations: View {
             // Centered intro header (text-center space-y-2).
             VStack(spacing: 8) {
                 Text("Let\u{2019}s start with your situation")
-                    .font(.system(size: Theme.FontSize.xl2, weight: .bold)) // text-2xl font-bold
+                    .font(Theme.sans(Theme.FontSize.xl2, weight: .bold)) // text-2xl font-bold
                     .foregroundColor(Theme.foreground)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                 Text("Pick everything that applies to you. We\u{2019}ll only ask about what\u{2019}s relevant — and your estimated refund updates as you go.")
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundColor(Theme.mutedForeground)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: 576) // max-w-xl, mx-auto
@@ -226,13 +226,13 @@ struct LifeSituations: View {
                                 RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous)
                                     .fill(selected ? Theme.primary : Theme.muted)
                                 Image(systemName: sfSymbol(forLucide: ls.icon))
-                                    .font(.system(size: 20))
+                                    .font(Theme.sans(20))
                                     .foregroundColor(selected ? Theme.primaryForeground : Theme.mutedForeground)
                             }
                             .frame(width: 40, height: 40)
 
                             Text(ls.label) // text-sm font-medium text-foreground
-                                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                 .foregroundColor(Theme.foreground)
                                 .multilineTextAlignment(.leading)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -241,7 +241,7 @@ struct LifeSituations: View {
                             // Trailing check when selected (ml-auto).
                             if selected {
                                 Image(systemName: "checkmark")
-                                    .font(.system(size: 18, weight: .semibold))
+                                    .font(Theme.sans(18, weight: .semibold))
                                     .foregroundColor(Theme.primary)
                             }
                         }
@@ -286,18 +286,18 @@ struct PrintableSummary: View {
             // Header block (mb-4 border-b pb-4).
             VStack(alignment: .leading, spacing: 0) {
                 Text("FinnaCalc \u{00B7} Tax Year \(String(s.taxYear)) estimate")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                 Text(s.filingStatusLabel) // text-lg font-bold
-                    .font(.system(size: 18, weight: .bold))
+                    .font(Theme.sans(18, weight: .bold))
                     .foregroundColor(Theme.cardForeground)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(s.headline.label) // mt-2 text-sm text-muted-foreground
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                     .padding(.top, 8)
                 Text(currency(s.headline.amount, cents: false)) // text-3xl font-bold
-                    .font(.system(size: 30, weight: .bold))
+                    .font(Theme.sans(30, weight: .bold))
                     .foregroundColor(Theme.cardForeground)
                     .monospacedDigit() // tabular-nums
             }
@@ -313,7 +313,7 @@ struct PrintableSummary: View {
                 ForEach(s.groups, id: \.title) { g in
                     VStack(alignment: .leading, spacing: 0) {
                         Text(g.title) // mb-1.5 text-sm font-semibold
-                            .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                             .foregroundColor(Theme.foreground)
                             .padding(.bottom, 6)
                         VStack(alignment: .leading, spacing: 4) { // space-y-1
@@ -328,7 +328,7 @@ struct PrintableSummary: View {
                 if let st = s.state {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("\(st.name) state")
-                            .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                             .foregroundColor(Theme.foreground)
                             .padding(.bottom, 6)
                         if st.hasIncomeTax {
@@ -344,7 +344,7 @@ struct PrintableSummary: View {
                             }
                         } else {
                             Text("No state income tax.")
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -354,7 +354,7 @@ struct PrintableSummary: View {
 
             // Footer (mt-6 border-t pt-4 text-xs).
             Text("Educational federal estimate.")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
                 .padding(.top, 16)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -384,12 +384,12 @@ struct PrintableSummary: View {
                 + Text(l.formRef.map { "  \($0)" } ?? "")
                     .foregroundColor(Theme.mutedForeground.opacity(0.7))
             )
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(currency(l.amount)) // font-medium tabular-nums text-foreground
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.foreground)
                 .monospacedDigit()
         }
@@ -400,11 +400,11 @@ struct PrintableSummary: View {
     private func summaryKeyValue(label: String, value: String) -> some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(value)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.foreground)
                 .monospacedDigit()
         }

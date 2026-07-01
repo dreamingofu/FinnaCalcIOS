@@ -19,7 +19,7 @@ struct FCWordmark: View {
             Text("Finna").foregroundColor(Theme.foreground) +
             Text("Calc").foregroundColor(Theme.primary)
         )
-        .font(.system(size: size, weight: .bold))
+        .font(Theme.sans(size, weight: .bold))
     }
 }
 

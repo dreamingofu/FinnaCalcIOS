@@ -21,7 +21,7 @@ struct ComingSoonView: View {
                 FCCardHeader {
                     HStack(spacing: 12) {
                         Image(systemName: icon)
-                            .font(.system(size: 28, weight: .semibold))
+                            .font(Theme.sans(28, weight: .semibold))
                             .foregroundStyle(Theme.primary)
                         FCCardTitle(title)
                     }

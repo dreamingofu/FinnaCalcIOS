@@ -299,11 +299,11 @@ struct EducationView: View {
     private var header: some View {
         VStack(spacing: 16) {
             Text("Build Financial Confidence")
-                .font(.system(size: 30, weight: .bold)) // text-3xl
+                .font(Theme.sans(30, weight: .bold)) // text-3xl
                 .foregroundColor(Theme.primary)
                 .multilineTextAlignment(.center)
             Text("Master personal finance fundamentals with easy-to-understand lessons, videos, and expert guidance.")
-                .font(.system(size: 18)) // text-lg
+                .font(Theme.sans(18)) // text-lg
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -346,11 +346,11 @@ struct EducationView: View {
                             .fill(Theme.primary)
                             .frame(width: 48, height: 48)
                         Image(systemName: topic.icon)
-                            .font(.system(size: 24))
+                            .font(Theme.sans(24))
                             .foregroundColor(Theme.primaryForeground)
                     }
                     Text(topic.title)
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundColor(Theme.cardForeground)
                         .multilineTextAlignment(.center)
                 }
@@ -361,7 +361,7 @@ struct EducationView: View {
                     VStack(spacing: 4) {
                         ForEach(topic.items, id: \.self) { item in
                             Text(item)
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.mutedForeground)
                                 .multilineTextAlignment(.center)
                         }
@@ -372,7 +372,7 @@ struct EducationView: View {
                     // is the tap target (NavigationLink), so this reads as a
                     // visual affordance rather than a separate control.
                     Text("Learn More")
-                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                         .foregroundColor(Theme.foreground)
                         .frame(maxWidth: .infinity)
                         .frame(height: 36)
@@ -390,7 +390,7 @@ struct EducationView: View {
     private var resultsList: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("\(results.count) result\(results.count != 1 ? "s" : "") for \u{201C}\(trimmedQuery)\u{201D}")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -416,17 +416,17 @@ struct EducationView: View {
                     .fill((doc.type == .video ? Theme.destructive : Theme.primary).opacity(0.12))
                     .frame(width: 40, height: 40)
                 Image(systemName: doc.type == .video ? "play.fill" : "book")
-                    .font(.system(size: 18))
+                    .font(Theme.sans(18))
                     .foregroundColor(doc.type == .video ? Theme.destructive : Theme.primary)
             }
             VStack(alignment: .leading, spacing: 4) {
                 Text(doc.title)
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundColor(Theme.foreground)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.leading)
                 Text("\(doc.type == .video ? "Video lesson" : "Article") · \(doc.topicName)")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             Spacer(minLength: 0)
@@ -446,15 +446,15 @@ struct EducationView: View {
     private var emptyResults: some View {
         VStack(spacing: 8) {
             Image(systemName: "magnifyingglass")
-                .font(.system(size: 36))
+                .font(Theme.sans(36))
                 .foregroundColor(Theme.mutedForeground)
                 .padding(.bottom, 4)
             Text("We couldn\u{2019}t find anything for \u{201C}\(trimmedQuery)\u{201D}")
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundColor(Theme.foreground)
                 .multilineTextAlignment(.center)
             Text("Try different words, or browse the topics below. We may not have a lesson on that yet.")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -518,10 +518,10 @@ private struct EducationHubView: View {
     private var hubHeader: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Financial Education Hub")
-                .font(.system(size: 30, weight: .bold))
+                .font(Theme.sans(30, weight: .bold))
                 .foregroundColor(Theme.foreground)
             Text("Your journey to financial confidence starts here")
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(Theme.mutedForeground)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -559,7 +559,7 @@ private struct EducationHubView: View {
             FCCardContent {
                 if videos.isEmpty {
                     Text("No video lessons for this topic yet.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                 } else {
                     pagedContent(
@@ -583,10 +583,10 @@ private struct EducationHubView: View {
                             .fill(Theme.destructive.opacity(0.12))
                         VStack(spacing: 8) {
                             Image(systemName: "play.circle.fill")
-                                .font(.system(size: 44))
+                                .font(Theme.sans(44))
                                 .foregroundColor(Theme.destructive)
                             Text("Watch on YouTube")
-                                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                 .foregroundColor(Theme.foreground)
                         }
                     }
@@ -607,7 +607,7 @@ private struct EducationHubView: View {
             FCCardContent {
                 if articles.isEmpty {
                     Text("No reading resources for this topic yet.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                 } else {
                     pagedContent(
@@ -628,10 +628,10 @@ private struct EducationHubView: View {
                 Link(destination: url) {
                     HStack(spacing: 12) {
                         Image(systemName: "book")
-                            .font(.system(size: 20))
+                            .font(Theme.sans(20))
                             .foregroundColor(Theme.primary)
                         Text("Click to read more")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.mutedForeground)
                         Spacer(minLength: 0)
                         Image(systemName: "arrow.up.right.square")
@@ -670,7 +670,7 @@ private struct EducationHubView: View {
 
                 VStack(spacing: 8) {
                     Text(title)
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundColor(Theme.cardForeground)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -687,7 +687,7 @@ private struct EducationHubView: View {
             }
 
             Text("\(index.wrappedValue + 1) / \(count)")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }

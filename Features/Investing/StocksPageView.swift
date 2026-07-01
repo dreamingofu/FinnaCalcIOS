@@ -87,7 +87,7 @@ struct StocksPageView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     if let error {
                         Text(error)
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.negative)
                     }
 
@@ -95,7 +95,7 @@ struct StocksPageView: View {
                         HStack {
                             ProgressView()
                             Text("Loading...")
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -120,10 +120,10 @@ struct StocksPageView: View {
                 } label: {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(result.symbol)
-                            .font(.system(size: Theme.FontSize.base, weight: .bold))
+                            .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                             .foregroundColor(Theme.foreground)
                         Text(result.name)
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.mutedForeground)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -162,16 +162,16 @@ struct StocksPageView: View {
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(stock.name) (\(stock.symbol))")
-                        .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         .foregroundColor(Theme.foreground)
                     Text("$\(CalcFormat.fixed(stock.price, 2))")
-                        .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         .foregroundColor(Theme.foreground)
                     HStack(spacing: 4) {
                         Image(systemName: isUp ? "arrow.up.right" : "arrow.down.right")
                         Text("\(CalcFormat.fixed(stock.change, 2)) (\(CalcFormat.fixed(stock.changePercent, 2))%)")
                     }
-                    .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     .foregroundColor(isUp ? Theme.positive : Theme.negative)
                 }
                 Spacer(minLength: 0)
@@ -185,7 +185,7 @@ struct StocksPageView: View {
 
             if !stock.description.isEmpty && stock.description != "None" {
                 Text(stock.description)
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                     .lineLimit(6)
             }
@@ -198,10 +198,10 @@ struct StocksPageView: View {
     private func statTile(label: String, value: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
             Text(value)
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.foreground)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

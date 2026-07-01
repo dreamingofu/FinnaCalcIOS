@@ -201,7 +201,7 @@ struct EmployeeContractorCalculatorView: View {
     private func comparisonView(_ c: EmployeeContractorCalc.Comparison) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Cost Comparison")
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
 
             CalcGrid {
@@ -258,15 +258,15 @@ struct EmployeeContractorCalculatorView: View {
     private func resultBlock(caption: String, value: String, color: Color, emphasized: Bool, sub: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(caption)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.mutedForeground)
             Text(value)
-                .font(.system(size: emphasized ? 30 : 24, weight: .bold))
+                .font(Theme.sans(emphasized ? 30 : 24, weight: .bold))
                 .foregroundStyle(color)
                 .minimumScaleFactor(0.6)
                 .lineLimit(1)
             Text(sub)
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -317,7 +317,7 @@ struct EmployeeContractorCalculatorView: View {
                 dividerRow()
                 row("Annual Contractor Cost", dollar(c.contractor.annualCost), bold: true)
                 Text("No payroll taxes, benefits, or workers comp required. Contractor is responsible for their own SE tax, insurance, and retirement.")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundStyle(Theme.mutedForeground)
                     .padding(.top, 2)
             }
@@ -329,10 +329,10 @@ struct EmployeeContractorCalculatorView: View {
             // Recommendation callout
             VStack(alignment: .leading, spacing: 4) {
                 Text("Recommendation")
-                    .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     .foregroundStyle(Theme.foreground)
                 Text(recommendationText(c))
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundStyle(Theme.mutedForeground)
             }
             .padding(16)
@@ -359,7 +359,7 @@ struct EmployeeContractorCalculatorView: View {
             Spacer(minLength: 8)
             Text(value)
         }
-        .font(.system(size: large ? Theme.FontSize.base : Theme.FontSize.sm,
+        .font(Theme.sans(large ? Theme.FontSize.base : Theme.FontSize.sm,
                       weight: bold ? .semibold : .regular))
         .foregroundStyle(Theme.foreground)
         .padding(.leading, indented ? 16 : 0)
@@ -368,7 +368,7 @@ struct EmployeeContractorCalculatorView: View {
     @ViewBuilder
     private func sectionLabel(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
             .foregroundStyle(Theme.mutedForeground)
             .padding(.top, 4)
     }
