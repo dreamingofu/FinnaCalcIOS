@@ -60,10 +60,10 @@ struct BudgetingView: View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(store.budgetType.title) Budget Planner")
-                    .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                     .foregroundStyle(Theme.foreground)
                 Text("Take control of your finances with our comprehensive budgeting tool")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundStyle(Theme.mutedForeground)
             }
             HStack(spacing: 8) {
@@ -79,24 +79,19 @@ struct BudgetingView: View {
 
     private var kpiGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
-            stat("Monthly Income", CalcFormat.currency(store.monthlyIncome), Theme.positive)
-            stat("Monthly Expenses", CalcFormat.currency(store.monthlyExpenses), Theme.negative)
-            stat("Net Income", CalcFormat.currency(store.monthlyNet), store.monthlyNet >= 0 ? Theme.positive : Theme.negative)
-            stat("Savings Rate", store.savingsRate.map { CalcFormat.fixed($0, 1) + "%" } ?? "—", Theme.primary)
+            stat("Monthly Income", CalcFormat.currency(store.monthlyIncome), .positive)
+            stat("Monthly Expenses", CalcFormat.currency(store.monthlyExpenses), .negative)
+            stat("Net Income", CalcFormat.currency(store.monthlyNet), store.monthlyNet >= 0 ? .positive : .negative)
+            stat("Savings Rate", store.savingsRate.map { CalcFormat.fixed($0, 1) + "%" } ?? "—", .neutral)
         }
     }
 
-    private func stat(_ label: String, _ value: String, _ color: Color) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(label).font(.system(size: Theme.FontSize.xs)).foregroundStyle(Theme.mutedForeground)
-            Text(value).font(.system(size: 22, weight: .bold)).foregroundStyle(color)
-                .minimumScaleFactor(0.6).lineLimit(1)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(14)
-        .background(Theme.card)
-        .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous).strokeBorder(Theme.border, lineWidth: 1))
+    private func stat(_ label: String, _ value: String, _ tone: FCResultTone) -> some View {
+        FCStat(label: label, value: value, tone: tone, size: .small)
+            .padding(14)
+            .background(Theme.card)
+            .clipShape(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: Theme.Radius.lg, style: .continuous).strokeBorder(Theme.border, lineWidth: 1))
     }
 
     private var budgetTypeToggle: some View {

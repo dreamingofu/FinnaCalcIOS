@@ -152,7 +152,7 @@ struct ROICalculatorView: View {
             case .success(let r):
                 VStack(alignment: .leading, spacing: 16) {
                     Text("ROI Analysis")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(Theme.sans(18, weight: .semibold))
                         .foregroundStyle(Theme.foreground)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -191,7 +191,7 @@ struct ROICalculatorView: View {
     private func fullSummary(_ r: ROICalc.Output) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Full Summary")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
 
             VStack(spacing: 8) {
@@ -212,11 +212,11 @@ struct ROICalculatorView: View {
     private func summaryRow(_ label: String, _ value: String, valueColor: Color = Theme.foreground) -> some View {
         HStack {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.mutedForeground)
             Spacer()
             Text(value)
-                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                 .foregroundStyle(valueColor)
         }
     }

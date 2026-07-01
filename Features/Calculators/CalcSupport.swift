@@ -100,7 +100,7 @@ struct CalcField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundStyle(Theme.foreground)
             FCTextField(placeholder, text: $text, keyboardType: keyboard)
         }
@@ -116,7 +116,7 @@ struct CalcPicker<T: Hashable>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundStyle(Theme.foreground)
             Menu {
                 ForEach(options, id: \.value) { option in
@@ -128,10 +128,10 @@ struct CalcPicker<T: Hashable>: View {
                         .foregroundStyle(Theme.foreground)
                     Spacer()
                     Image(systemName: "chevron.up.chevron.down")
-                        .font(.system(size: 12))
+                        .font(Theme.sans(12))
                         .foregroundStyle(Theme.mutedForeground)
                 }
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .frame(height: 40)
                 .padding(.horizontal, 12)
                 .frame(maxWidth: .infinity)
@@ -171,7 +171,7 @@ struct CalcResult: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(label.uppercased())
-                .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
                 .tracking(0.6) // overline: uppercase, wide tracking
                 .foregroundStyle(Theme.mutedForeground)
             Text(value)
@@ -190,7 +190,7 @@ struct CalcResultsSection<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Results")
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
             CalcGrid { content() }
         }
@@ -203,7 +203,7 @@ struct CalcErrorText: View {
     let text: String
     var body: some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundStyle(Theme.destructive)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -230,7 +230,7 @@ struct CalculatorScaffold<Inputs: View, Results: View>: View {
                 FCCardHeader {
                     HStack(spacing: 8) {
                         Image(systemName: icon)
-                            .font(.system(size: 22, weight: .semibold))
+                            .font(Theme.sans(22, weight: .semibold))
                             .foregroundStyle(Theme.primary)
                         FCCardTitle(title)
                     }

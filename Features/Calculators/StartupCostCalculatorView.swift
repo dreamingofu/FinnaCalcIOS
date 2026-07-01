@@ -240,7 +240,7 @@ struct StartupCostCalculatorView: View {
                 // Funding Analysis
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Funding Analysis:")
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundColor(Theme.foreground)
 
                     analysisRow("Required Capital:", "$" + CalcFormat.locale(result.totalWithBuffer))
@@ -250,11 +250,11 @@ struct StartupCostCalculatorView: View {
 
                     HStack {
                         Text("Funding Gap:")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.foreground)
                         Spacer()
                         Text((result.fundingGap > 0 ? "-" : "+") + "$" + CalcFormat.locale(abs(result.fundingGap)))
-                            .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                             .foregroundColor(result.fundingGap > 0 ? Theme.negative : Theme.positive)
                     }
 
@@ -264,7 +264,7 @@ struct StartupCostCalculatorView: View {
                     Text(result.fundingGap > 0
                          ? "You need an additional $\(CalcFormat.locale(result.fundingGap)) in funding"
                          : "You have sufficient funding with $\(CalcFormat.locale(abs(result.fundingGap))) surplus")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -276,10 +276,10 @@ struct StartupCostCalculatorView: View {
                 VStack(alignment: .leading, spacing: 12) {
                     HStack(spacing: 6) {
                         Image(systemName: "chart.pie")
-                            .font(.system(size: 14))
+                            .font(Theme.sans(14))
                             .foregroundColor(Theme.foreground)
                         Text("Detailed Cost Breakdown:")
-                            .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                            .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                             .foregroundColor(Theme.foreground)
                     }
 
@@ -290,15 +290,15 @@ struct StartupCostCalculatorView: View {
                                     .fill(category.color)
                                     .frame(width: 12, height: 12)
                                 Text("\(category.name):")
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.foreground)
                             }
                             Spacer()
                             Text("$" + CalcFormat.locale(category.value))
-                                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
                             + Text("  (\(percent(category.value, of: result.totalCosts))%)")
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -314,11 +314,11 @@ struct StartupCostCalculatorView: View {
     private func analysisRow(_ label: String, _ value: String) -> some View {
         HStack {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.foreground)
             Spacer()
             Text(value)
-                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                 .foregroundColor(Theme.foreground)
         }
     }

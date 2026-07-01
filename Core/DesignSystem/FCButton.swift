@@ -100,7 +100,7 @@ private struct FCButtonStyle: ButtonStyle {
 
         return configuration.label
             // base: gap-2, text-sm font-medium, [&_svg]:size-4
-            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
             .imageScale(.medium)
             .foregroundStyle(foreground(pressed: pressed))
             .underline(variant == .link && pressed, color: Theme.primary)

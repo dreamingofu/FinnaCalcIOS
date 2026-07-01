@@ -96,9 +96,9 @@ struct FinnaBotView: View {
                 ToolbarItem(placement: .principal) {
                     VStack(spacing: 1) {
                         (Text("Finna").foregroundColor(Theme.foreground) + Text("Bot").foregroundColor(Theme.primary))
-                            .font(.system(size: 16, weight: .bold))
+                            .font(Theme.sans(16, weight: .bold))
                         Text("Personal finance & business AI assistant")
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.mutedForeground)
                     }
                 }
@@ -121,7 +121,7 @@ struct FinnaBotView: View {
                     }
                     if let error = chat.error {
                         Text(error)
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.destructive)
                             .padding(8)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -150,7 +150,7 @@ struct FinnaBotView: View {
         HStack {
             if message.role == .user { Spacer(minLength: 40) }
             Text(message.content)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(message.role == .user ? .white : Theme.foreground)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
@@ -165,7 +165,7 @@ struct FinnaBotView: View {
     private var inputBar: some View {
         HStack(spacing: 8) {
             TextField("Ask FinnaBot anything…", text: $chat.input, axis: .vertical)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .lineLimit(1...4)
                 .focused($inputFocused)
                 .padding(.horizontal, 14)
@@ -178,7 +178,7 @@ struct FinnaBotView: View {
 
             Button(action: chat.send) {
                 Image(systemName: "paperplane.fill")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(Theme.sans(15, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(width: 36, height: 36)
                     .background(Theme.primary)

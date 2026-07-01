@@ -45,7 +45,7 @@ private struct MainTabs: View {
         .overlay(alignment: .bottomTrailing) {
             Button { showChat = true } label: {
                 Image(systemName: "message.fill")
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(Theme.sans(22, weight: .semibold))
                     .foregroundColor(.white)
                     .frame(width: 56, height: 56)
                     .background(Theme.primary)
@@ -92,7 +92,7 @@ private struct AccountToolbarButton: View {
         } label: {
             if let user = auth.user {
                 Text(user.displayName)
-                    .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                     .lineLimit(1)
             } else {
                 Image(systemName: "person.crop.circle")

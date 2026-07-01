@@ -136,7 +136,7 @@ struct BudgetTabView: View {
                     // Fixed toggle
                     Toggle(isOn: $formIsFixed) {
                         Text("Fixed amount (doesn't vary month to month)")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.foreground)
                     }
                     .tint(Theme.primary)
@@ -160,7 +160,7 @@ struct BudgetTabView: View {
 
     private func fieldLabel(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
             .foregroundColor(Theme.foreground)
     }
 
@@ -254,7 +254,7 @@ struct BudgetTabView: View {
                                 ? "Your expense summary chart will appear here."
                                 : "Your income summary chart will appear here."
                         )
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                         .multilineTextAlignment(.center)
                         Spacer()
@@ -269,7 +269,7 @@ struct BudgetTabView: View {
                         .foregroundStyle(chartView == .expense ? Theme.negative : Theme.positive)
                         .annotation(position: .trailing) {
                             Text(money(slice.value))
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -311,7 +311,7 @@ struct BudgetTabView: View {
             FCCardContent {
                 if groupedItems.isEmpty {
                     Text("No budget items yet. Add your first income or expense above!")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 32)
@@ -320,7 +320,7 @@ struct BudgetTabView: View {
                         ForEach(groupedItems, id: \.category) { group in
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(group.category)
-                                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                     .foregroundColor(Theme.foreground)
                                 ForEach(group.items) { item in
                                     itemRow(item)
@@ -338,16 +338,16 @@ struct BudgetTabView: View {
         HStack(spacing: 8) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.subcategory.isEmpty ? "No description" : item.subcategory)
-                    .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                     .foregroundColor(Theme.primary)
                     .lineLimit(1)
                 HStack(spacing: 6) {
                     Text(item.frequency.title)
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                     if item.isFixed {
                         Text("\u{2022}")
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.mutedForeground)
                         FCBadge("Fixed", variant: .secondary)
                     }
@@ -356,10 +356,10 @@ struct BudgetTabView: View {
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 2) {
                 Text("\(item.type == .income ? "+" : "-")\(money(item.amount))")
-                    .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                     .foregroundColor(item.type == .income ? Theme.positive : Theme.negative)
                 Text("\(money(item.monthlyAmount))/month")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             FCButton(variant: .ghost, size: .icon) {
@@ -492,14 +492,14 @@ struct BudgetTabView: View {
         let color = feedbackColor(fb.kind)
         return HStack(alignment: .top, spacing: 12) {
             Image(systemName: fb.systemImage)
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(color)
             VStack(alignment: .leading, spacing: 4) {
                 Text(fb.title)
-                    .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                     .foregroundColor(color)
                 Text(fb.message)
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.foreground)
                     .fixedSize(horizontal: false, vertical: true)
             }

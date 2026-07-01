@@ -72,10 +72,10 @@ struct SafeInvestmentsView: View {
                 // ── Header ──
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Safe Investment Options") // text-2xl font-bold
-                        .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         .foregroundColor(Theme.foreground)
                     Text("Top safest investments with consistent returns")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                 }
 
@@ -113,14 +113,14 @@ struct SafeInvestmentsView: View {
             FCCardContent {
                 HStack(alignment: .top, spacing: 12) {
                     Image(systemName: "shield.fill") // Shield (lucide)
-                        .font(.system(size: 18))
+                        .font(Theme.sans(18))
                         .foregroundColor(Theme.primary)
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Educational, not financial advice")
-                            .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                             .foregroundColor(Theme.foreground)
                         Text("Average returns are historical and not guaranteed. All investing carries risk, including the possible loss of principal. Do your own research before investing.")
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.mutedForeground)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -144,24 +144,24 @@ struct SafeInvestmentsView: View {
                         .fill(Theme.primary.opacity(0.12))
                         .frame(width: 40, height: 40)
                     Image(systemName: "chart.line.uptrend.xyaxis") // TrendingUp
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(Theme.sans(18, weight: .semibold))
                         .foregroundColor(Theme.primary)
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(investment.name) // font-semibold
-                        .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                         .foregroundColor(Theme.foreground)
                         .fixedSize(horizontal: false, vertical: true)
                     Text(investment.description) // text-sm text-muted-foreground
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(Theme.mutedForeground)
                         .fixedSize(horizontal: false, vertical: true)
 
                     HStack(spacing: 12) { // gap-3 mt-1
                         riskBadge(investment.risk)
                         Text("Min: \(investment.minInvestment)")
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.mutedForeground)
                     }
                     .padding(.top, 4)
@@ -173,10 +173,10 @@ struct SafeInvestmentsView: View {
             VStack(alignment: .trailing, spacing: 8) {
                 VStack(alignment: .trailing, spacing: 0) {
                     Text(investment.avgReturn) // text-lg font-bold text-green-600
-                        .font(.system(size: 18, weight: .bold))
+                        .font(Theme.sans(18, weight: .bold))
                         .foregroundColor(Theme.positive)
                     Text("avg return")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                 }
 
@@ -200,7 +200,7 @@ struct SafeInvestmentsView: View {
     private func riskBadge(_ risk: String) -> some View {
         if let color = riskColor(risk) {
             Text(risk)
-                .font(.system(size: Theme.FontSize.xs, weight: .semibold)) // text-xs font-semibold
+                .font(Theme.sans(Theme.FontSize.xs, weight: .semibold)) // text-xs font-semibold
                 .foregroundColor(color)          // text-*-700
                 .padding(.horizontal, 10)        // px-2.5
                 .padding(.vertical, 2)           // py-0.5
@@ -243,7 +243,7 @@ private struct FCButtonLabel: View {
             Image(systemName: "arrow.up.right.square") // ExternalLink
                 .imageScale(.small)
         }
-        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
         .foregroundColor(Theme.primaryForeground)
         .frame(height: 36) // h-9 (size="sm")
         .padding(.horizontal, 12) // px-3

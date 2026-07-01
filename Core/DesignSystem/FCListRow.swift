@@ -32,7 +32,7 @@ struct FCIconChip: View {
 
     var body: some View {
         Image(systemName: systemName)
-            .font(.system(size: size * 0.45, weight: .semibold))
+            .font(Theme.sans(size * 0.45, weight: .semibold))
             .foregroundStyle(foreground)
             .frame(width: size, height: size)
             .background(background)
@@ -53,11 +53,11 @@ struct FCListRow<Trailing: View>: View {
             FCIconChip(systemName: icon, tone: iconTone)
             VStack(alignment: .leading, spacing: 2) {
                 Text(title)
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundStyle(Theme.foreground)
                 if let subtitle {
                     Text(subtitle)
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundStyle(Theme.mutedForeground)
                         .lineLimit(1)
                 }

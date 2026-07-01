@@ -315,7 +315,7 @@ struct PricingCalculatorView: View {
 
     private func helperText(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.xs))
+            .font(Theme.sans(Theme.FontSize.xs))
             .foregroundStyle(Theme.mutedForeground)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -349,11 +349,11 @@ struct PricingCalculatorView: View {
             if let industry = r.industry {
                 infoCard {
                     Text("Industry Benchmark Analysis")
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundStyle(Theme.foreground)
                     HStack {
                         Text("Industry Range: $\(PricingCalc.plainNumber(industry.hourlyLow)) - $\(PricingCalc.plainNumber(industry.hourlyHigh))")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundStyle(Theme.foreground)
                         Spacer()
                         FCBadge(variant: (r.isCompetitive ?? false) ? .default : .secondary) {
@@ -366,7 +366,7 @@ struct PricingCalculatorView: View {
 
             mutedCard {
                 Text("Pricing Scenarios:")
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundStyle(Theme.foreground)
                 ForEach(r.scenarios) { scenario in
                     listRow(
@@ -394,17 +394,17 @@ struct PricingCalculatorView: View {
             if r.competitiveAdvantage != 0 {
                 infoCard {
                     Text("Competitive Analysis")
-                        .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         .foregroundStyle(Theme.foreground)
                     Text("Your price is \(CalcFormat.fixed(abs(r.competitiveAdvantage), 1))%\(r.competitiveAdvantage > 0 ? " below" : " above") competitor pricing")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundColor(r.competitiveAdvantage > 0 ? Theme.positive : Theme.negative)
                 }
             }
 
             mutedCard {
                 Text("Pricing Strategies:")
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundStyle(Theme.foreground)
                 ForEach(r.strategies) { strategy in
                     listRow(
@@ -460,19 +460,19 @@ struct PricingCalculatorView: View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(name)
-                    .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     .foregroundStyle(Theme.foreground)
                 Text(sub)
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundStyle(Theme.mutedForeground)
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 2) {
                 Text(primary)
-                    .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                     .foregroundStyle(Theme.foreground)
                 Text(secondary)
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(secondaryColor)
             }
         }

@@ -49,10 +49,10 @@ struct DashboardWatchlistView: View {
                 // <Star className="h-5 w-5 text-blue-600" /> + CardTitle (text-lg)
                 HStack(spacing: 8) {
                     Image(systemName: "star.fill")
-                        .font(.system(size: 20))
+                        .font(Theme.sans(20))
                         .foregroundColor(Theme.primary)
                     Text("My Watchlist")
-                        .font(.system(size: 18, weight: .semibold)) // text-lg
+                        .font(Theme.sans(18, weight: .semibold)) // text-lg
                         .foregroundStyle(Theme.cardForeground)
                 }
 
@@ -110,7 +110,7 @@ struct DashboardWatchlistView: View {
             if symbols.isEmpty {
                 // col-span-4 text-sm text-muted-foreground text-center py-8
                 Text("Your watchlist is empty. Add a ticker to track it here.")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundStyle(Theme.mutedForeground)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
@@ -140,7 +140,7 @@ struct DashboardWatchlistView: View {
                 remove(symbol)
             } label: {
                 Image(systemName: "xmark")
-                    .font(.system(size: 10, weight: .bold))
+                    .font(Theme.sans(10, weight: .bold))
                     .foregroundColor(Theme.mutedForeground)
                     .frame(width: 20, height: 20)
                     .background(Theme.muted)

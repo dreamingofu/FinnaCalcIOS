@@ -142,12 +142,12 @@ struct AboutView: View {
     private var hero: some View {
         VStack(spacing: 16) {
             Text("Empowering Smart Financial Decisions")
-                .font(.system(size: 32, weight: .bold)) // text-4xl
+                .font(Theme.sans(32, weight: .bold)) // text-4xl
                 .foregroundColor(Theme.foreground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
             Text("FinnaCalc is your trusted partner in financial planning, providing professional-grade calculators and planning tools to help individuals and businesses make informed financial decisions.")
-                .font(.system(size: Theme.FontSize.xl2 * 0.83)) // ~text-xl (20pt)
+                .font(Theme.sans(Theme.FontSize.xl2 * 0.83)) // ~text-xl (20pt)
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -179,17 +179,17 @@ struct AboutView: View {
             FCCardHeader {
                 HStack(spacing: 8) {
                     Image(systemName: icon)
-                        .font(.system(size: 22))
+                        .font(Theme.sans(22))
                         .foregroundColor(tint)
                     Text(title)
-                        .font(.system(size: Theme.FontSize.xl2, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .semibold))
                         .tracking(-0.6)
                         .foregroundColor(Theme.cardForeground)
                 }
             }
             FCCardContent {
                 Text(body)
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundColor(Theme.mutedForeground)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -203,11 +203,11 @@ struct AboutView: View {
         VStack(spacing: 32) { // space-y-8
             VStack(spacing: 16) {
                 Text("What We Offer")
-                    .font(.system(size: 28, weight: .bold)) // text-3xl
+                    .font(Theme.sans(28, weight: .bold)) // text-3xl
                     .foregroundColor(Theme.foreground)
                     .multilineTextAlignment(.center)
                 Text("Comprehensive financial tools designed for real-world applications")
-                    .font(.system(size: 18)) // text-lg
+                    .font(Theme.sans(18)) // text-lg
                     .foregroundColor(Theme.mutedForeground)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -227,10 +227,10 @@ struct AboutView: View {
             FCCardHeader {
                 HStack(spacing: 8) {
                     Image(systemName: item.icon)
-                        .font(.system(size: 22))
+                        .font(Theme.sans(22))
                         .foregroundColor(item.tint)
                     Text(item.title)
-                        .font(.system(size: Theme.FontSize.xl2, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .semibold))
                         .tracking(-0.6)
                         .foregroundColor(Theme.cardForeground)
                         .fixedSize(horizontal: false, vertical: true)
@@ -238,7 +238,7 @@ struct AboutView: View {
             }
             FCCardContent {
                 Text(item.body)
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundColor(Theme.mutedForeground)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -251,7 +251,7 @@ struct AboutView: View {
     private var coreValues: some View {
         VStack(spacing: 32) { // space-y-8
             Text("Our Core Values")
-                .font(.system(size: 28, weight: .bold)) // text-3xl
+                .font(Theme.sans(28, weight: .bold)) // text-3xl
                 .foregroundColor(Theme.foreground)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -271,14 +271,14 @@ struct AboutView: View {
                     .fill(item.tint.opacity(0.15)) // bg-{color}-100
                     .frame(width: 64, height: 64)   // w-16 h-16
                 Image(systemName: item.icon)
-                    .font(.system(size: 28))        // h-8 w-8
+                    .font(Theme.sans(28))        // h-8 w-8
                     .foregroundColor(item.tint)
             }
             Text(item.title)
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.foreground)
             Text(item.body)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -292,11 +292,11 @@ struct AboutView: View {
         VStack(spacing: 32) {
             VStack(spacing: 16) { // space-y-4 mb-8
                 Text("Why Choose FinnaCalc?")
-                    .font(.system(size: 28, weight: .bold)) // text-3xl
+                    .font(Theme.sans(28, weight: .bold)) // text-3xl
                     .foregroundColor(Theme.foreground)
                     .multilineTextAlignment(.center)
                 Text("We're committed to providing the most reliable and user-friendly financial tools available")
-                    .font(.system(size: 18)) // text-lg
+                    .font(Theme.sans(18)) // text-lg
                     .foregroundColor(Theme.mutedForeground)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -307,10 +307,10 @@ struct AboutView: View {
                 ForEach(reasonItems) { item in
                     VStack(alignment: .leading, spacing: 16) { // space-y-4
                         Text(item.title)
-                            .font(.system(size: Theme.FontSize.xl2 * 0.83, weight: .semibold)) // text-xl
+                            .font(Theme.sans(Theme.FontSize.xl2 * 0.83, weight: .semibold)) // text-xl
                             .foregroundColor(Theme.foreground)
                         Text(item.body)
-                            .font(.system(size: Theme.FontSize.base))
+                            .font(Theme.sans(Theme.FontSize.base))
                             .foregroundColor(Theme.mutedForeground)
                             .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -332,11 +332,11 @@ struct AboutView: View {
     private var getInTouch: some View {
         VStack(spacing: 16) { // text-center space-y-4
             Text("Get in Touch")
-                .font(.system(size: Theme.FontSize.xl2, weight: .bold)) // text-2xl
+                .font(Theme.sans(Theme.FontSize.xl2, weight: .bold)) // text-2xl
                 .foregroundColor(Theme.foreground)
                 .multilineTextAlignment(.center)
             Text("Have questions, suggestions, or feedback? We'd love to hear from you. Our team is committed to continuously improving FinnaCalc based on user needs and feedback.")
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -353,15 +353,15 @@ struct AboutView: View {
         // <strong>label</strong> email — strong is bold, address links via mailto.
         HStack(spacing: 4) {
             Text(label)
-                .font(.system(size: Theme.FontSize.base, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                 .foregroundColor(Theme.mutedForeground)
             if let url = URL(string: "mailto:\(email)") {
                 Link(email, destination: url)
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundColor(Theme.primary)
             } else {
                 Text(email)
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundColor(Theme.mutedForeground)
             }
         }

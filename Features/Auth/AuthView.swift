@@ -90,7 +90,7 @@ struct AuthView: View {
                     }, action: {})
                     .disabled(true)
                     Text("Google sign-in arrives in a later update.")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundStyle(Theme.mutedForeground)
                 }
                 .padding(24)
@@ -108,7 +108,7 @@ struct AuthView: View {
 
     private func message(_ text: String, color: Color) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundStyle(color)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -116,7 +116,7 @@ struct AuthView: View {
     private var dividerOr: some View {
         HStack(spacing: 12) {
             Rectangle().fill(Theme.border).frame(height: 1)
-            Text("or").font(.system(size: Theme.FontSize.xs)).foregroundStyle(Theme.mutedForeground)
+            Text("or").font(Theme.sans(Theme.FontSize.xs)).foregroundStyle(Theme.mutedForeground)
             Rectangle().fill(Theme.border).frame(height: 1)
         }
     }

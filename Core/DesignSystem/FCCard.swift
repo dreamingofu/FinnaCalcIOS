@@ -72,7 +72,7 @@ struct FCCardTitle: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.xl2, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.xl2, weight: .semibold))
             .tracking(-0.6)         // tracking-tight (-0.025em @ 24pt)
             .lineSpacing(0)         // leading-none (best-effort; see note above)
             .foregroundStyle(Theme.cardForeground)
@@ -87,7 +87,7 @@ struct FCCardDescription: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundStyle(Theme.mutedForeground)
             .fixedSize(horizontal: false, vertical: true)
     }
@@ -142,7 +142,7 @@ private struct FCCardGallery: View {
                 }
                 FCCardContent {
                     Text("Card content goes here.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundStyle(Theme.foreground)
                 }
                 FCCardFooter {

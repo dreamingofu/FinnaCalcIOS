@@ -47,7 +47,7 @@ struct FCTextField: View {
             }
             field
         }
-        .font(.system(size: Theme.FontSize.base)) // text-base (16)
+        .font(Theme.sans(Theme.FontSize.base)) // text-base (16)
         .foregroundStyle(Theme.foreground)
         .tint(Theme.primary)                      // caret color
         .keyboardType(keyboardType)

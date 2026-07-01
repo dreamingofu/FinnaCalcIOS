@@ -79,7 +79,7 @@ struct DashboardScreenerView: View {
         FCCardHeader {
             HStack(spacing: 8) {
                 Image(systemName: "slider.horizontal.3")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(Theme.sans(18, weight: .semibold))
                     .foregroundStyle(Theme.primary)
                 FCCardTitle("Stock Screener")
                 Spacer()
@@ -111,7 +111,7 @@ struct DashboardScreenerView: View {
 
             VStack(alignment: .leading, spacing: 6) {
                 Text("Price range")
-                    .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     .foregroundStyle(Theme.foreground)
                 HStack(spacing: 8) {
                     FCTextField("Min", text: $minPrice, keyboardType: .decimalPad)
@@ -124,7 +124,7 @@ struct DashboardScreenerView: View {
 
             VStack(alignment: .leading, spacing: 6) {
                 Text("Min Div Yield: \(CalcFormat.raw(minYield))%")
-                    .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     .foregroundStyle(Theme.foreground)
                 Slider(value: $minYield, in: 0...5, step: 0.5)
                     .tint(Theme.primary)
@@ -148,7 +148,7 @@ struct DashboardScreenerView: View {
                 .padding(.vertical, 8)
             } else if let error {
                 Text(error)
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundStyle(Theme.mutedForeground)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.vertical, 24)
@@ -164,7 +164,7 @@ struct DashboardScreenerView: View {
                 Text("Prices delayed ~15 min · Source: Finnhub")
                     .multilineTextAlignment(.trailing)
             }
-            .font(.system(size: Theme.FontSize.xs))
+            .font(Theme.sans(Theme.FontSize.xs))
             .foregroundStyle(Theme.mutedForeground)
             .padding(.vertical, 10)
         }
@@ -198,7 +198,7 @@ struct DashboardScreenerView: View {
 
                 if filtered.isEmpty {
                     Text("No stocks match these filters.")
-                        .font(.system(size: Theme.FontSize.sm))
+                        .font(Theme.sans(Theme.FontSize.sm))
                         .foregroundStyle(Theme.mutedForeground)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 32)
@@ -237,7 +237,7 @@ struct DashboardScreenerView: View {
 
     private func plainHeader(_ label: String, width: CGFloat, alignment: Alignment) -> some View {
         Text(label)
-            .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
             .foregroundStyle(Theme.mutedForeground)
             .frame(width: width, alignment: alignment)
             .padding(.horizontal, 6)
@@ -248,9 +248,9 @@ struct DashboardScreenerView: View {
             HStack(spacing: 3) {
                 if alignment == .trailing { Spacer(minLength: 0) }
                 Text(label)
-                    .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
                 Image(systemName: "arrow.up.arrow.down")
-                    .font(.system(size: 9))
+                    .font(Theme.sans(9))
                     .opacity(0.5)
                 if alignment == .leading { Spacer(minLength: 0) }
             }
@@ -265,13 +265,13 @@ struct DashboardScreenerView: View {
     private func dataRow(_ r: ScreenerRow) -> some View {
         HStack(spacing: 0) {
             Text(r.symbol)
-                .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                 .foregroundStyle(Theme.foreground)
                 .frame(width: wTicker, alignment: .leading)
                 .padding(.horizontal, 6)
 
             Text(r.company)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.mutedForeground)
                 .lineLimit(1)
                 .truncationMode(.tail)
@@ -279,50 +279,50 @@ struct DashboardScreenerView: View {
                 .padding(.horizontal, 6)
 
             Text(r.sector)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.mutedForeground)
                 .lineLimit(1)
                 .frame(width: wSector, alignment: .leading)
                 .padding(.horizontal, 6)
 
             Text("$" + CalcFormat.fixed(r.price, 2))
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundStyle(Theme.foreground)
                 .frame(width: wPrice, alignment: .trailing)
                 .padding(.horizontal, 6)
 
             Text(changeText(r.changePercent))
-                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                 .foregroundColor(r.changePercent >= 0 ? Theme.positive : Theme.negative)
                 .frame(width: wChg, alignment: .trailing)
                 .padding(.horizontal, 6)
 
             Text(Self.fmtCap(r.marketCap))
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.foreground)
                 .frame(width: wCap, alignment: .trailing)
                 .padding(.horizontal, 6)
 
             Text(r.peRatio != nil ? CalcFormat.fixed(r.peRatio!, 1) : "—")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.foreground)
                 .frame(width: wPe, alignment: .trailing)
                 .padding(.horizontal, 6)
 
             Text(r.dividendYield != nil ? CalcFormat.fixed(r.dividendYield!, 2) + "%" : "—")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.foreground)
                 .frame(width: wYield, alignment: .trailing)
                 .padding(.horizontal, 6)
 
             Text(r.beta != nil ? CalcFormat.fixed(r.beta!, 2) : "—")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.foreground)
                 .frame(width: wBeta, alignment: .trailing)
                 .padding(.horizontal, 6)
 
             Image(systemName: "chevron.right")
-                .font(.system(size: 12, weight: .semibold))
+                .font(Theme.sans(12, weight: .semibold))
                 .foregroundStyle(Theme.mutedForeground)
                 .frame(width: wChevron)
         }

@@ -19,14 +19,14 @@ struct BondsPageView: View {
             VStack(alignment: .leading, spacing: 16) {
                 // h1: text-2xl font-bold — "Bonds"
                 Text("Bonds")
-                    .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                     .foregroundStyle(Theme.foreground)
 
                 // p: "Content about bond investing will go here."
                 FCCard {
                     FCCardContent {
                         Text("Content about bond investing will go here.")
-                            .font(.system(size: Theme.FontSize.base))
+                            .font(Theme.sans(Theme.FontSize.base))
                             .foregroundStyle(Theme.foreground)
                             .padding(.top, 24) // restore the header's top padding (content uses pt-0)
                             .fixedSize(horizontal: false, vertical: true)

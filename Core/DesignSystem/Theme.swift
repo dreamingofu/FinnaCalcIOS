@@ -183,18 +183,33 @@ enum Theme {
         static let xl5: CGFloat = 44
     }
 
-    /// Display/body face. The design specifies IBM Plex Sans; we substitute the
-    /// system font (the design flags this swap explicitly — swap in a bundled
-    /// IBM Plex face to match exactly).
+    /// Display/body face — IBM Plex Sans (bundled; see App/Fonts + FontRegistration).
+    /// Falls back to the system font automatically if the face isn't registered.
     static func sans(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
-        .system(size: size, weight: weight)
+        .custom(sansFace(weight), size: size)
     }
 
-    /// Numeric figure face — IBM Plex Mono in the design, the monospaced system
-    /// font here. Use for ALL currency / rate / percentage figures (the design's
-    /// signature: "figures are the heroes, rendered in the mono figure font").
+    private static func sansFace(_ weight: Font.Weight) -> String {
+        switch weight {
+        case .bold, .heavy, .black: return "IBMPlexSans-Bold"
+        case .semibold:             return "IBMPlexSans-SemiBold"
+        case .medium:               return "IBMPlexSans-Medium"
+        default:                    return "IBMPlexSans-Regular"
+        }
+    }
+
+    /// Numeric figure face — IBM Plex Mono. Use for ALL currency / rate /
+    /// percentage figures (the design's signature: "figures are the heroes").
     static func figure(_ size: CGFloat, weight: Font.Weight = .semibold) -> Font {
-        .system(size: size, weight: weight, design: .monospaced)
+        .custom(figureFace(weight), size: size)
+    }
+
+    private static func figureFace(_ weight: Font.Weight) -> String {
+        switch weight {
+        case .bold, .heavy, .black, .semibold: return "IBMPlexMono-SemiBold"
+        case .medium:                          return "IBMPlexMono-Medium"
+        default:                               return "IBMPlexMono-Regular"
+        }
     }
 
     // MARK: Elevation — tokens/radius.css shadows (ink-tinted, low-spread)

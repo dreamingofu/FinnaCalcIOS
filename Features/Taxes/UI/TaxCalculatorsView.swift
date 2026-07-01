@@ -92,10 +92,10 @@ struct TaxCalculatorsView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Tax Optimization Tools")
-                .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                 .foregroundColor(Theme.foreground)
             Text("Calculators and tools to maximize your refund")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -116,15 +116,15 @@ struct TaxCalculatorsView: View {
                         } label: {
                             HStack(spacing: 12) {
                                 Image(systemName: tool.icon)
-                                    .font(.system(size: 18))
+                                    .font(Theme.sans(18))
                                     .foregroundColor(Theme.primary)
                                     .frame(width: 20)
                                 VStack(alignment: .leading, spacing: 1) {
                                     Text(tool.title)
-                                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                         .foregroundColor(Theme.foreground)
                                     Text(tool.description)
-                                        .font(.system(size: Theme.FontSize.xs))
+                                        .font(Theme.sans(Theme.FontSize.xs))
                                         .foregroundColor(Theme.mutedForeground)
                                         .multilineTextAlignment(.leading)
                                 }
@@ -205,11 +205,11 @@ private struct TaxRow: View {
     var body: some View {
         HStack {
             Text(label)
-                .font(.system(size: small ? Theme.FontSize.sm : Theme.FontSize.base))
+                .font(Theme.sans(small ? Theme.FontSize.sm : Theme.FontSize.base))
                 .foregroundColor(labelColor)
             Spacer(minLength: 8)
             Text(value)
-                .font(.system(size: small ? Theme.FontSize.sm : Theme.FontSize.base,
+                .font(Theme.sans(small ? Theme.FontSize.sm : Theme.FontSize.base,
                               weight: bold ? .semibold : .regular))
                 .foregroundColor(valueColor)
         }
@@ -240,7 +240,7 @@ private struct NumericField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.foreground)
             FCTextField(placeholder, text: $text, keyboardType: .numbersAndPunctuation)
                 .onChange(of: text) { newValue in
@@ -249,7 +249,7 @@ private struct NumericField: View {
                 }
             if let helper {
                 Text(helper)
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
         }
@@ -264,10 +264,10 @@ private struct EmptyResult: View {
     var body: some View {
         VStack(spacing: 8) {
             Image(systemName: icon)
-                .font(.system(size: 40))
+                .font(Theme.sans(40))
                 .foregroundColor(Theme.mutedForeground)
             Text(message)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
         }
@@ -352,7 +352,7 @@ private struct TaxCalculatorCard: View {
                         // Filing status select (web 3-option Select).
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Filing Status")
-                                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                 .foregroundColor(Theme.foreground)
                             Menu {
                                 Button("Single") { filingStatus = .single }
@@ -365,12 +365,12 @@ private struct TaxCalculatorCard: View {
 
                         VStack(alignment: .leading, spacing: 8) {
                             Text("Deduction Type")
-                                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                                 .foregroundColor(Theme.foreground)
                             FCTextField("", text: .constant("Standard Deduction (Estimated)"))
                                 .disabled(true)
                             Text("Itemized deductions can be explored in the Deduction Finder.")
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundColor(Theme.mutedForeground)
                         }
 
@@ -382,7 +382,7 @@ private struct TaxCalculatorCard: View {
                     if let r = results {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Federal Tax Results")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
                             VStack(spacing: 12) {
                                 MutedPanel { TaxRow(label: "Gross Income", value: dollarsLoc(r.grossIncome)) }
@@ -392,11 +392,11 @@ private struct TaxCalculatorCard: View {
                                 VStack(alignment: .leading, spacing: 0) {
                                     HStack {
                                         Text("Estimated Federal Tax")
-                                            .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                            .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                             .foregroundColor(Theme.foreground)
                                         Spacer(minLength: 8)
                                         Text(dollarsInt(r.estimatedTax))
-                                            .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                                            .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                                             .foregroundColor(Theme.redStrong)
                                     }
                                 }
@@ -428,10 +428,10 @@ private struct TaxCalculatorCard: View {
     private func rateTile(_ caption: String, _ value: String) -> some View {
         VStack(spacing: 2) {
             Text(caption)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
             Text(value)
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.foreground)
         }
         .frame(maxWidth: .infinity)
@@ -495,18 +495,18 @@ private struct RefundEstimatorCard: View {
                     if let r = results {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Federal Refund Results")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
 
                             VStack(spacing: 8) {
                                 Image(systemName: "dollarsign.circle")
-                                    .font(.system(size: 40))
+                                    .font(Theme.sans(40))
                                     .foregroundColor(Theme.greenStrong)
                                 Text("\(r.owes ? "-" : "")\(dollarsInt(abs(r.refund)))")
-                                    .font(.system(size: 30, weight: .bold))
+                                    .font(Theme.sans(30, weight: .bold))
                                     .foregroundColor(r.owes ? Theme.redStrong : Theme.greenStrong)
                                 Text(r.owes ? "Estimated Federal Amount Owed" : "Estimated Federal Refund")
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.greenStrong)
                             }
                             .frame(maxWidth: .infinity)
@@ -630,7 +630,7 @@ private struct DeductionFinderCard: View {
                             HStack(spacing: 8) {
                                 Circle().fill(Theme.primary).frame(width: 8, height: 8)
                                 Text(category.category)
-                                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                     .foregroundColor(Theme.foreground)
                             }
                             VStack(spacing: 12) {
@@ -658,7 +658,7 @@ private struct DeductionFinderCard: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .top) {
                     Text(item.name)
-                        .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                        .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                         .foregroundColor(Theme.foreground)
                         .multilineTextAlignment(.leading)
                     Spacer(minLength: 8)
@@ -667,15 +667,15 @@ private struct DeductionFinderCard: View {
                     }
                 }
                 Text(item.amount)
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
                 Divider()
                 HStack(spacing: 8) {
                     Image(systemName: isOn ? "checkmark.square.fill" : "square")
-                        .font(.system(size: 16))
+                        .font(Theme.sans(16))
                         .foregroundColor(isOn ? Theme.primary : Theme.mutedForeground)
                     Text("I believe I qualify")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.foreground)
                 }
             }
@@ -694,7 +694,7 @@ private struct DeductionFinderCard: View {
     private func summaryCard(_ s: Summary) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Potential Federal Deduction Summary")
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundColor(Theme.foreground)
             TaxRow(label: "Selected Potential Deductions", value: "\(s.selectedCount) items")
             TaxRow(label: "Estimated Itemized Total*", value: dollarsInt(s.totalItemized))
@@ -702,11 +702,11 @@ private struct DeductionFinderCard: View {
             Divider()
             HStack {
                 Text("Recommendation")
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundColor(Theme.foreground)
                 Spacer(minLength: 8)
                 Text(s.shouldItemize ? "Likely Better to Itemize (Federal)" : "Likely Better to Take Standard (Federal)")
-                    .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                     .foregroundColor(Theme.primary)
                     .multilineTextAlignment(.trailing)
             }
@@ -717,7 +717,7 @@ private struct DeductionFinderCard: View {
 
             if s.shouldItemize {
                 Text("Itemizing could potentially increase your federal deduction by \(dollarsInt(s.savings))!*")
-                    .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                     .foregroundColor(Theme.greenStrong)
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
@@ -727,7 +727,7 @@ private struct DeductionFinderCard: View {
             }
 
             Text("*Based on hypothetical values. Actual amounts vary. State deduction rules differ.")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
                 .frame(maxWidth: .infinity)
                 .multilineTextAlignment(.center)
@@ -791,7 +791,7 @@ private struct QuarterlyCalculatorCard: View {
                     if let r = results {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Federal Payment Results")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
 
                             MutedPanel(padding: 16) {
@@ -803,7 +803,7 @@ private struct QuarterlyCalculatorCard: View {
                             }
 
                             Text("Estimated Federal Payments")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
 
                             VStack(spacing: 12) {
@@ -814,7 +814,7 @@ private struct QuarterlyCalculatorCard: View {
                             }
 
                             Text("State quarterly payments may also be required.")
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundColor(Theme.mutedForeground)
                                 .frame(maxWidth: .infinity)
                                 .multilineTextAlignment(.center)
@@ -832,15 +832,15 @@ private struct QuarterlyCalculatorCard: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text(label)
-                    .font(.system(size: Theme.FontSize.base, weight: .medium))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .medium))
                     .foregroundColor(Theme.foreground)
                 Text(due)
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
             }
             Spacer(minLength: 8)
             Text(dollarsInt(amount))
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.foreground)
         }
         .padding(12)
@@ -908,18 +908,18 @@ private struct WithholdingCalculatorCard: View {
                     if let r = results {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Federal Withholding Results")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
 
                             VStack(spacing: 8) {
                                 Image(systemName: "chart.pie")
-                                    .font(.system(size: 40))
+                                    .font(Theme.sans(40))
                                     .foregroundColor(Theme.blueStrong)
                                 Text(dollarsInt(r.perPaycheck))
-                                    .font(.system(size: 30, weight: .bold))
+                                    .font(Theme.sans(30, weight: .bold))
                                     .foregroundColor(Theme.blueStrong)
                                 Text("Federal Tax Per Paycheck (Est.)")
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.blueStrong)
                             }
                             .frame(maxWidth: .infinity)
@@ -936,7 +936,7 @@ private struct WithholdingCalculatorCard: View {
                             VStack(alignment: .leading, spacing: 0) {
                                 (Text("Tip: ").bold() +
                                  Text("Use the official IRS Withholding Estimator for accurate W-4 adjustments. State withholding not included."))
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.yellowText)
                             }
                             .padding(16)
@@ -957,22 +957,22 @@ private struct WithholdingCalculatorCard: View {
                     VStack(alignment: .leading, spacing: 8) {
                         HStack(spacing: 8) {
                             Image(systemName: "info.circle")
-                                .font(.system(size: 16))
+                                .font(Theme.sans(16))
                                 .foregroundColor(Theme.foreground)
                             Text("About W-4 Withholding")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
                         }
                         Text("Your W-4 form tells your employer how much federal tax to withhold. Adjusting it helps match your tax liability to avoid owing or overpaying significantly.")
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             .foregroundColor(Theme.mutedForeground)
                         Link(destination: URL(string: "https://www.irs.gov/individuals/tax-withholding-estimator")!) {
                             HStack(spacing: 4) {
                                 Text("Use Official IRS Estimator")
                                 Image(systemName: "arrow.up.right.square")
-                                    .font(.system(size: 12))
+                                    .font(Theme.sans(12))
                             }
-                            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                             .foregroundColor(Theme.primary)
                         }
                     }
@@ -995,10 +995,10 @@ private func menuLabel(_ text: String) -> some View {
             .foregroundColor(Theme.foreground)
         Spacer()
         Image(systemName: "chevron.up.chevron.down")
-            .font(.system(size: 12))
+            .font(Theme.sans(12))
             .foregroundColor(Theme.mutedForeground)
     }
-    .font(.system(size: Theme.FontSize.base))
+    .font(Theme.sans(Theme.FontSize.base))
     .frame(height: 40)
     .padding(.horizontal, 12)
     .frame(maxWidth: .infinity)

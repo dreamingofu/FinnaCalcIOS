@@ -88,15 +88,15 @@ struct DebtCardView: View {
                         .frame(width: 32, height: 32)
                         .overlay(
                             Image(systemName: "creditcard")
-                                .font(.system(size: 16, weight: .medium))
+                                .font(Theme.sans(16, weight: .medium))
                                 .foregroundColor(.white)
                         )
                     VStack(alignment: .leading, spacing: 1) {
                         Text("Debt & Credit Utilization")
-                            .font(.system(size: 18, weight: .semibold))
+                            .font(Theme.sans(18, weight: .semibold))
                             .foregroundColor(Theme.cardForeground)
                         Text("Powered by Plaid · soft, no credit inquiry")
-                            .font(.system(size: Theme.FontSize.xs))
+                            .font(Theme.sans(Theme.FontSize.xs))
                             .foregroundColor(Theme.mutedForeground)
                     }
                 }
@@ -105,7 +105,7 @@ struct DebtCardView: View {
                     FCButton(variant: .outline, size: .sm) {
                         HStack(spacing: 6) {
                             Image(systemName: "arrow.clockwise")
-                                .font(.system(size: 13))
+                                .font(Theme.sans(13))
                             Text("New")
                         }
                     } action: { reset() }
@@ -140,12 +140,12 @@ struct DebtCardView: View {
             HStack(alignment: .top, spacing: 16) {
                 summaryTile(title: "Total debt") {
                     Text(fmtMoney(data.totalDebt))
-                        .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         .foregroundColor(Theme.cardForeground)
                 }
                 summaryTile(title: "Min. payments / mo") {
                     Text(fmtMoney(data.totalMinimumPayments))
-                        .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         .foregroundColor(Theme.cardForeground)
                 }
                 summaryTile(title: "Overall utilization") {
@@ -153,9 +153,9 @@ struct DebtCardView: View {
                         Text(data.overallUtilization != nil
                              ? "\(CalcFormat.fixed(data.overallUtilization!, 1))%"
                              : "—")
-                            .font(.system(size: Theme.FontSize.xl2, weight: .bold))
+                            .font(Theme.sans(Theme.FontSize.xl2, weight: .bold))
                         + Text("  \(overall.label)")
-                            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                     )
                     .foregroundColor(overall.text)
                 }
@@ -167,10 +167,10 @@ struct DebtCardView: View {
                     progressBar(value: u, height: 10, fill: overall.bar)
                     HStack(spacing: 6) {
                         Image(systemName: "info.circle")
-                            .font(.system(size: 13))
+                            .font(Theme.sans(13))
                         Text("Keeping utilization under 30% helps your credit score.")
                     }
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
                 }
             }
@@ -196,7 +196,7 @@ struct DebtCardView: View {
             }
 
             Text("Balances are pulled from your linked accounts via Plaid. This is a soft connection and does not affect your credit score.")
-                .font(.system(size: 11))
+                .font(Theme.sans(11))
                 .foregroundColor(Theme.mutedForeground)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -206,7 +206,7 @@ struct DebtCardView: View {
     private func summaryTile<V: View>(title: String, @ViewBuilder value: () -> V) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
                 .fixedSize(horizontal: false, vertical: true)
             value()
@@ -221,7 +221,7 @@ struct DebtCardView: View {
 
     private func sectionHeading(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
             .foregroundColor(Theme.mutedForeground)
     }
 
@@ -233,25 +233,25 @@ struct DebtCardView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 2) {
                     (
-                        Text(c.name).font(.system(size: Theme.FontSize.base, weight: .semibold))
+                        Text(c.name).font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                         + Text(c.mask != nil ? " ····\(c.mask!)" : "")
-                            .font(.system(size: Theme.FontSize.base))
+                            .font(Theme.sans(Theme.FontSize.base))
                             .foregroundColor(Theme.mutedForeground)
                     )
                     .foregroundColor(Theme.cardForeground)
                     .lineLimit(1)
 
                     Text(creditSubtitle(c))
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                 }
                 Spacer(minLength: 8)
                 VStack(alignment: .trailing, spacing: 1) {
                     Text(c.utilization != nil ? "\(CalcFormat.fixed(c.utilization!, 0))%" : "—")
-                        .font(.system(size: Theme.FontSize.base, weight: .bold))
+                        .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                         .foregroundColor(band.text)
                     Text("utilization")
-                        .font(.system(size: 11))
+                        .font(Theme.sans(11))
                         .foregroundColor(Theme.mutedForeground)
                 }
             }
@@ -305,26 +305,26 @@ struct DebtCardView: View {
                 .frame(width: 32, height: 32)
                 .overlay(
                     Image(systemName: d.type == "student" ? "graduationcap" : "house")
-                        .font(.system(size: 16))
+                        .font(Theme.sans(16))
                         .foregroundColor(Theme.foreground)
                 )
             VStack(alignment: .leading, spacing: 2) {
                 Text(d.name)
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundColor(Theme.cardForeground)
                     .lineLimit(1)
                 Text(loanSubtitle(d))
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 2) {
                 Text(fmtMoney2(d.balance))
-                    .font(.system(size: Theme.FontSize.base, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                     .foregroundColor(Theme.cardForeground)
                 if let min = d.minimumPayment {
                     Text("\(fmtMoney2(min))/mo")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                 }
             }
@@ -351,10 +351,10 @@ struct DebtCardView: View {
             SpinnerView(color: blue, size: 32)
                 .padding(.bottom, 12)
             Text("Importing your accounts…")
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .foregroundColor(Theme.cardForeground)
             Text("Crunching balances and limits")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
                 .padding(.top, 4)
         }
@@ -371,18 +371,18 @@ struct DebtCardView: View {
                 .frame(width: 56, height: 56)
                 .overlay(
                     Image(systemName: "creditcard")
-                        .font(.system(size: 28))
+                        .font(Theme.sans(28))
                         .foregroundColor(blue)
                 )
                 .padding(.bottom, 16)
 
             Text("See your debt & utilization")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.cardForeground)
                 .padding(.bottom, 4)
 
             Text("Securely link your cards and loans to see balances, APRs, minimum payments, and your credit utilization — the second biggest factor in your credit score.")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 384) // max-w-sm
@@ -391,11 +391,11 @@ struct DebtCardView: View {
             if let error {
                 HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "exclamationmark.triangle")
-                        .font(.system(size: 16))
+                        .font(Theme.sans(16))
                     Text(error)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.negative)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
@@ -423,10 +423,10 @@ struct DebtCardView: View {
 
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.shield")
-                    .font(.system(size: 13))
+                    .font(Theme.sans(13))
                 Text("Bank-level encryption · soft connection, no credit inquiry")
             }
-            .font(.system(size: 11))
+            .font(Theme.sans(11))
             .foregroundColor(Theme.mutedForeground)
             .padding(.top, 12)
         }
@@ -529,14 +529,14 @@ private struct FlowChips: View {
             ForEach(items) { chip in
                 if let color = chip.emphasisColor {
                     Text(chip.value)
-                        .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+                        .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
                         .foregroundColor(color)
                 } else {
                     (
                         Text(chip.label).foregroundColor(Theme.mutedForeground)
                         + Text(chip.value).fontWeight(.medium).foregroundColor(Theme.foreground)
                     )
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                 }
             }
         }
@@ -601,7 +601,7 @@ private struct SpinnerView: View {
 
     var body: some View {
         Image(systemName: "arrow.clockwise")
-            .font(.system(size: size * 0.85, weight: .semibold))
+            .font(Theme.sans(size * 0.85, weight: .semibold))
             .foregroundColor(color)
             .frame(width: size, height: size)
             .rotationEffect(.degrees(spin ? 360 : 0))

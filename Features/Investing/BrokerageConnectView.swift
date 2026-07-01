@@ -73,15 +73,15 @@ struct BrokerageConnectView: View {
                         .fill(Theme.primary)
                         .frame(width: 32, height: 32)
                     Image(systemName: "building.columns.fill")
-                        .font(.system(size: 16))
+                        .font(Theme.sans(16))
                         .foregroundColor(.white)
                 }
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Your Brokerage")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(Theme.sans(18, weight: .semibold))
                         .foregroundColor(Theme.cardForeground)
                     Text("Connect any broker to view & trade · Powered by SnapTrade")
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                 }
                 Spacer(minLength: 8)
@@ -90,7 +90,7 @@ struct BrokerageConnectView: View {
                         FCButton(variant: .outline, size: .sm) {
                             HStack(spacing: 6) {
                                 Image(systemName: "arrow.clockwise")
-                                    .font(.system(size: 13))
+                                    .font(Theme.sans(13))
                                 Text("Refresh")
                             }
                         } action: {
@@ -133,14 +133,14 @@ struct BrokerageConnectView: View {
     private var notConfiguredNotice: some View {
         HStack(alignment: .top, spacing: 8) {
             Image(systemName: "exclamationmark.circle")
-                .font(.system(size: 16))
+                .font(Theme.sans(16))
                 .foregroundColor(Theme.mutedForeground)
             (Text("Brokerage connections aren't configured yet. Add ")
                 + Text("SNAPTRADE_CLIENT_ID").font(.system(size: Theme.FontSize.xs, design: .monospaced))
                 + Text(" and ")
                 + Text("SNAPTRADE_CONSUMER_KEY").font(.system(size: Theme.FontSize.xs, design: .monospaced))
                 + Text(" to enable connecting a broker."))
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
         }
         .padding(.horizontal, 16)
@@ -178,7 +178,7 @@ struct BrokerageConnectView: View {
                 FCButton(variant: .outline, size: .sm) {
                     HStack(spacing: 8) {
                         Image(systemName: "plus.circle")
-                            .font(.system(size: 16))
+                            .font(Theme.sans(16))
                         Text(connecting ? "Opening…" : "Connect another broker")
                     }
                 } action: {
@@ -189,7 +189,7 @@ struct BrokerageConnectView: View {
                 Spacer(minLength: 8)
 
                 Text("Trading from FinnaCalc is coming next.")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
         }
@@ -198,17 +198,17 @@ struct BrokerageConnectView: View {
     private func accountCard(_ a: BrokerageAccount) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(a.institution)
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundColor(Theme.mutedForeground)
                 .lineLimit(1)
-            (Text(a.name).font(.system(size: Theme.FontSize.base, weight: .semibold))
+            (Text(a.name).font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 + Text(a.number.isEmpty ? "" : " ····\(String(a.number.suffix(4)))")
-                    .font(.system(size: Theme.FontSize.base))
+                    .font(Theme.sans(Theme.FontSize.base))
                     .foregroundColor(Theme.mutedForeground))
                 .foregroundColor(Theme.cardForeground)
                 .lineLimit(1)
             Text(money(a.totalValue, a.currency))
-                .font(.system(size: 18, weight: .bold))
+                .font(Theme.sans(18, weight: .bold))
                 .foregroundColor(Theme.cardForeground)
                 .padding(.top, 4)
         }
@@ -236,7 +236,7 @@ struct BrokerageConnectView: View {
                 Text("Open P/L")
                     .frame(width: 84, alignment: .trailing)
             }
-            .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+            .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
             .foregroundColor(Theme.mutedForeground)
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -263,11 +263,11 @@ struct BrokerageConnectView: View {
         HStack(alignment: .center, spacing: 8) {
             VStack(alignment: .leading, spacing: 1) {
                 Text(p.symbol)
-                    .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                    .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                     .foregroundColor(Theme.cardForeground)
                 if !p.description.isEmpty {
                     Text(p.description)
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.mutedForeground)
                         .lineLimit(1)
                 }
@@ -283,14 +283,14 @@ struct BrokerageConnectView: View {
                 .foregroundColor(Theme.cardForeground)
 
             Text(money(p.marketValue))
-                .font(.system(size: Theme.FontSize.sm, weight: .medium))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
                 .frame(width: 84, alignment: .trailing)
                 .foregroundColor(Theme.cardForeground)
 
             pnlCell(p.openPnl)
                 .frame(width: 84, alignment: .trailing)
         }
-        .font(.system(size: Theme.FontSize.sm))
+        .font(Theme.sans(Theme.FontSize.sm))
         .padding(.horizontal, 12)
         .padding(.vertical, 10)
     }
@@ -299,11 +299,11 @@ struct BrokerageConnectView: View {
     private func pnlCell(_ pnl: Double?) -> some View {
         if let pnl {
             Text("\(pnl >= 0 ? "+" : "")\(money(pnl))")
-                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                 .foregroundColor(pnl >= 0 ? Theme.positive : Theme.negative)
         } else {
             Text("—")
-                .font(.system(size: Theme.FontSize.sm, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.sm, weight: .semibold))
                 .foregroundColor(Theme.cardForeground)
         }
     }
@@ -317,18 +317,18 @@ struct BrokerageConnectView: View {
                     .fill(Theme.primary.opacity(0.12))
                     .frame(width: 56, height: 56)
                 Image(systemName: "link")
-                    .font(.system(size: 28))
+                    .font(Theme.sans(28))
                     .foregroundColor(Theme.primary)
             }
             .padding(.bottom, 16)
 
             Text("Connect the broker you already use")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.cardForeground)
                 .padding(.bottom, 4)
 
             Text("Link Robinhood, Webull, Schwab, Fidelity and more to see your real positions in FinnaCalc — and trade from here as we roll it out.")
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundColor(Theme.mutedForeground)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: 420)
@@ -337,10 +337,10 @@ struct BrokerageConnectView: View {
             if let error {
                 HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "exclamationmark.circle")
-                        .font(.system(size: 16))
+                        .font(Theme.sans(16))
                         .foregroundColor(Theme.negative)
                     Text(error)
-                        .font(.system(size: Theme.FontSize.xs))
+                        .font(Theme.sans(Theme.FontSize.xs))
                         .foregroundColor(Theme.negative)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -360,11 +360,11 @@ struct BrokerageConnectView: View {
                 HStack(spacing: 8) {
                     if connecting {
                         Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 16))
+                            .font(Theme.sans(16))
                         Text("Opening…")
                     } else {
                         Image(systemName: "plus.circle")
-                            .font(.system(size: 16))
+                            .font(Theme.sans(16))
                         Text("Connect a brokerage")
                     }
                 }
@@ -375,10 +375,10 @@ struct BrokerageConnectView: View {
 
             HStack(spacing: 6) {
                 Image(systemName: "checkmark.shield")
-                    .font(.system(size: 13))
+                    .font(Theme.sans(13))
                 Text("Secure connection via SnapTrade · we never see your brokerage password")
             }
-            .font(.system(size: 11))
+            .font(Theme.sans(11))
             .foregroundColor(Theme.mutedForeground)
             .multilineTextAlignment(.center)
             .padding(.top, 12)

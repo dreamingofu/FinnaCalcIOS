@@ -165,10 +165,10 @@ struct InvestmentEducationView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Investment Education")
-                .font(.system(size: 30, weight: .bold)) // text-3xl
+                .font(Theme.sans(30, weight: .bold)) // text-3xl
                 .foregroundColor(Theme.foreground)
             Text("Master the fundamentals of smart investing")
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(Theme.mutedForeground)
         }
     }
@@ -181,14 +181,14 @@ struct InvestmentEducationView: View {
                 HStack(alignment: .center, spacing: 12) {
                     HStack(spacing: 12) {
                         Image(systemName: "person.2.fill")
-                            .font(.system(size: 28))
+                            .font(Theme.sans(28))
                             .foregroundColor(Theme.positive) // text-green-600
                         VStack(alignment: .leading, spacing: 2) {
                             Text("Join Our Investment Community")
-                                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                                 .foregroundColor(Theme.foreground)
                             Text("Connect with other beginner investors")
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.mutedForeground)
                         }
                     }
@@ -197,7 +197,7 @@ struct InvestmentEducationView: View {
                         HStack(spacing: 4) {
                             Text("Join Now")
                             Image(systemName: "arrow.up.right.square")
-                                .font(.system(size: 12))
+                                .font(Theme.sans(12))
                         }
                     } action: {}
                 }
@@ -227,7 +227,7 @@ struct InvestmentEducationView: View {
                     ForEach(videoLessons) { video in
                         DisclosureGroup {
                             Text(video.lessonDescription)
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Theme.mutedForeground)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top, 8)
@@ -256,13 +256,13 @@ struct InvestmentEducationView: View {
                     .fill(Theme.primary)
                     .frame(width: 36, height: 36)
                 Image(systemName: "play.fill")
-                    .font(.system(size: 14))
+                    .font(Theme.sans(14))
                     .foregroundColor(Theme.primaryForeground)
                     .offset(x: 1)
             }
             VStack(alignment: .leading, spacing: 4) {
                 Text(video.title)
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundColor(Theme.foreground)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HStack(spacing: 6) {
@@ -272,7 +272,7 @@ struct InvestmentEducationView: View {
                     FCBadge(variant: .secondary) {
                         HStack(spacing: 4) {
                             Image(systemName: "clock")
-                                .font(.system(size: 10))
+                                .font(Theme.sans(10))
                             Text(video.duration)
                         }
                     }
@@ -295,13 +295,13 @@ struct InvestmentEducationView: View {
                         DisclosureGroup {
                             VStack(alignment: .leading, spacing: 12) {
                                 Text(resource.resourceDescription)
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.mutedForeground)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 FCButton(variant: .outline, size: .sm) {
                                     HStack(spacing: 4) {
                                         Image(systemName: "arrow.up.right.square")
-                                            .font(.system(size: 12))
+                                            .font(Theme.sans(12))
                                         Text("View Resource")
                                     }
                                     .frame(maxWidth: .infinity)
@@ -332,10 +332,10 @@ struct InvestmentEducationView: View {
         HStack(alignment: .top, spacing: 8) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(resource.title)
-                    .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                     .foregroundColor(Theme.foreground)
                 Text("by \(resource.author)")
-                    .font(.system(size: Theme.FontSize.sm))
+                    .font(Theme.sans(Theme.FontSize.sm))
                     .foregroundColor(Theme.mutedForeground)
                 FCBadge(variant: .outline) {
                     Text(resource.type)
@@ -343,7 +343,7 @@ struct InvestmentEducationView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             Image(systemName: "book")
-                .font(.system(size: 18))
+                .font(Theme.sans(18))
                 .foregroundColor(Theme.mutedForeground)
         }
     }
@@ -370,15 +370,15 @@ struct InvestmentEducationView: View {
                                     .fill(Theme.primary)
                                     .frame(width: 32, height: 32)
                                 Text("\(step.number)")
-                                    .font(.system(size: Theme.FontSize.sm, weight: .bold))
+                                    .font(Theme.sans(Theme.FontSize.sm, weight: .bold))
                                     .foregroundColor(Theme.primaryForeground)
                             }
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(step.title)
-                                    .font(.system(size: Theme.FontSize.base, weight: .medium))
+                                    .font(Theme.sans(Theme.FontSize.base, weight: .medium))
                                     .foregroundColor(Theme.foreground)
                                 Text(step.detail)
-                                    .font(.system(size: Theme.FontSize.sm))
+                                    .font(Theme.sans(Theme.FontSize.sm))
                                     .foregroundColor(Theme.mutedForeground)
                             }
                             Spacer(minLength: 0)

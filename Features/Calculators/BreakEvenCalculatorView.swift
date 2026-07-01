@@ -144,7 +144,7 @@ struct BreakEvenCalculatorView: View {
         VStack(alignment: .leading, spacing: 6) {
             CalcField(label: "Fixed Costs per Month ($)", placeholder: "10000", text: $fixedCosts)
             Text("Rent, salaries, insurance, etc.")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
         }
     }
@@ -153,7 +153,7 @@ struct BreakEvenCalculatorView: View {
         VStack(alignment: .leading, spacing: 6) {
             CalcField(label: "Variable Cost per \(unitNoun) ($)", placeholder: "25", text: $variableCostPerUnit)
             Text("Materials, direct labor per unit")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
         }
     }
@@ -174,7 +174,7 @@ struct BreakEvenCalculatorView: View {
         VStack(alignment: .leading, spacing: 6) {
             CalcField(label: "Target Net Profit Margin (%)", placeholder: "20", text: $targetProfitMargin)
             Text("% of revenue you want as net profit")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
         }
     }
@@ -183,7 +183,7 @@ struct BreakEvenCalculatorView: View {
         VStack(alignment: .leading, spacing: 6) {
             CalcField(label: "Seasonality Adjustment (%)", placeholder: "0", text: $seasonalityFactor)
             Text("+ for peak season, − for off-season")
-                .font(.system(size: Theme.FontSize.xs))
+                .font(Theme.sans(Theme.FontSize.xs))
                 .foregroundStyle(Theme.mutedForeground)
         }
     }
@@ -206,7 +206,7 @@ struct BreakEvenCalculatorView: View {
     private func successView(_ r: BreakEvenCalc.Output) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Break-Even Analysis")
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
 
             CalcGrid {
@@ -282,7 +282,7 @@ struct BreakEvenCalculatorView: View {
         }()
 
         Text(base + tail)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundStyle(Theme.foreground.opacity(0.8))
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(16)

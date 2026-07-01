@@ -39,7 +39,7 @@ struct AdvisingView: View {
                     FCButton(variant: .outline, size: .default) {
                         HStack(spacing: 8) {
                             Image(systemName: "arrow.left")
-                                .font(.system(size: 16, weight: .medium))
+                                .font(Theme.sans(16, weight: .medium))
                             Text("Back")
                         }
                     } action: {
@@ -52,19 +52,19 @@ struct AdvisingView: View {
                 // text-center hero.
                 VStack(spacing: 0) {
                     Image(systemName: "person.2.fill")
-                        .font(.system(size: 48, weight: .regular))
+                        .font(Theme.sans(48, weight: .regular))
                         .foregroundColor(Theme.primary) // text-blue-600
                         .padding(.bottom, 24)            // mb-6
 
                     Text("Personal Financial Advising")
-                        .font(.system(size: 30, weight: .bold)) // text-3xl
+                        .font(Theme.sans(30, weight: .bold)) // text-3xl
                         .foregroundColor(Theme.foreground)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.bottom, 16) // mb-4
 
                     Text("Coming Soon to Premium Version")
-                        .font(.system(size: 18)) // text-lg
+                        .font(Theme.sans(18)) // text-lg
                         .foregroundColor(Theme.mutedForeground)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
@@ -75,7 +75,7 @@ struct AdvisingView: View {
                     // mt-8 — free-calculator CTAs.
                     VStack(spacing: 16) {
                         Text("Start with our free financial calculators today:")
-                            .font(.system(size: Theme.FontSize.base))
+                            .font(Theme.sans(Theme.FontSize.base))
                             .foregroundColor(Theme.mutedForeground)
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
@@ -121,7 +121,7 @@ struct AdvisingView: View {
                                     .fill(Theme.primary) // bg-blue-600
                                     .frame(width: 8, height: 8)
                                 Text(feature)
-                                    .font(.system(size: Theme.FontSize.base))
+                                    .font(Theme.sans(Theme.FontSize.base))
                                     .foregroundColor(Theme.cardForeground)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
@@ -136,7 +136,7 @@ struct AdvisingView: View {
                             .padding(.top, 16) // pt-4
 
                         Text("Get notified when our premium advisory services become available!")
-                            .font(.system(size: Theme.FontSize.sm)) // text-sm
+                            .font(Theme.sans(Theme.FontSize.sm)) // text-sm
                             .foregroundColor(Theme.mutedForeground)
                             .fixedSize(horizontal: false, vertical: true)
 
@@ -175,7 +175,7 @@ struct AdvisingView: View {
     private func ctaLabel(_ title: String, variant: FCButtonVariant) -> some View {
         let isPrimary = variant == .default
         Text(title)
-            .font(.system(size: Theme.FontSize.sm, weight: .medium))
+            .font(Theme.sans(Theme.FontSize.sm, weight: .medium))
             .foregroundColor(isPrimary ? Theme.primaryForeground : Theme.foreground)
             .frame(maxWidth: .infinity)
             .frame(height: 40) // h-10

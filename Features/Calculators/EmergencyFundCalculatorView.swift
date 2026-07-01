@@ -152,14 +152,14 @@ struct EmergencyFundCalculatorView: View {
                 Text(targetType == "months"
                      ? "Recommended: 3–6 months for most people"
                      : "Enter your desired fund total")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundStyle(Theme.mutedForeground)
             }
             CalcField(label: "Monthly Savings Contribution ($)", placeholder: "500", text: $monthlySavings)
             VStack(alignment: .leading, spacing: 6) {
                 CalcField(label: "Savings Account APY (%)", placeholder: "4.5", text: $interestRate)
                 Text("HYSAs currently offer 4–5% APY")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundStyle(Theme.mutedForeground)
             }
             CalcPicker(label: "Goal Type", selection: $savingsGoal, options: [
@@ -183,22 +183,22 @@ struct EmergencyFundCalculatorView: View {
             case .success(let r):
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Emergency Fund Analysis")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(Theme.sans(18, weight: .semibold))
                         .foregroundStyle(Theme.foreground)
 
                     CalcGrid {
                         // Target Emergency Fund (headline, green)
                         VStack(alignment: .leading, spacing: 2) {
                             Text("Target Emergency Fund")
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundStyle(Theme.mutedForeground)
                             Text("$" + EFFormat.localized(r.targetAmount))
-                                .font(.system(size: 30, weight: .bold))
+                                .font(Theme.sans(30, weight: .bold))
                                 .foregroundStyle(Theme.positive)
                                 .minimumScaleFactor(0.6)
                                 .lineLimit(1)
                             Text("\(CalcFormat.fixed(r.targetMonths, 1)) months of expenses")
-                                .font(.system(size: Theme.FontSize.xs))
+                                .font(Theme.sans(Theme.FontSize.xs))
                                 .foregroundStyle(Theme.mutedForeground)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -212,10 +212,10 @@ struct EmergencyFundCalculatorView: View {
                         // Progress (blue) with bar
                         VStack(alignment: .leading, spacing: 6) {
                             Text("Progress")
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundStyle(Theme.mutedForeground)
                             Text(CalcFormat.fixed(r.percentComplete, 1) + "%")
-                                .font(.system(size: 24, weight: .bold))
+                                .font(Theme.sans(24, weight: .bold))
                                 .foregroundStyle(Theme.primary)
                                 .minimumScaleFactor(0.6)
                                 .lineLimit(1)
@@ -270,7 +270,7 @@ struct EmergencyFundCalculatorView: View {
     private var tipsCard: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Tips")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundStyle(Theme.foreground)
             VStack(alignment: .leading, spacing: 4) {
                 tip("Keep your fund in a high-yield savings account (HYSA)")
@@ -291,7 +291,7 @@ struct EmergencyFundCalculatorView: View {
             Text("•")
             Text(text)
         }
-        .font(.system(size: Theme.FontSize.sm))
+        .font(Theme.sans(Theme.FontSize.sm))
         .foregroundStyle(Theme.mutedForeground)
     }
 

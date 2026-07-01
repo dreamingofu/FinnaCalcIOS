@@ -48,7 +48,7 @@ struct TermsView: View {
 
                 // ── Header ──
                 Text("Terms of Service") // text-4xl font-bold text-foreground
-                    .font(.system(size: 36, weight: .bold))
+                    .font(Theme.sans(36, weight: .bold))
                     .foregroundColor(Theme.foreground)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .multilineTextAlignment(.center)
@@ -79,7 +79,7 @@ struct TermsView: View {
                             // bg-blue-50 callout
                             (Text("Important: ").bold()
                                 + Text("The calculators provide estimates for planning purposes only. Results should not be considered as professional financial, tax, or legal advice."))
-                                .font(.system(size: Theme.FontSize.sm))
+                                .font(Theme.sans(Theme.FontSize.sm))
                                 .foregroundColor(Color(h: 221, s: 70, l: 40)) // text-blue-800
                                 .fixedSize(horizontal: false, vertical: true)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -175,7 +175,7 @@ struct TermsView: View {
                         (Text("Your privacy is important. The collection and use of personal information is governed by the ")
                             + Text("Privacy Policy").foregroundColor(Theme.primary)
                             + Text(", which is incorporated into these Terms by reference. By using the services, you consent to the collection and use of information as described in the Privacy Policy."))
-                            .font(.system(size: Theme.FontSize.base))
+                            .font(Theme.sans(Theme.FontSize.base))
                             .foregroundColor(Theme.mutedForeground)
                             .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -246,10 +246,10 @@ struct TermsView: View {
         FCCardHeader {
             HStack(alignment: .center, spacing: 8) { // gap-2
                 Image(systemName: icon)
-                    .font(.system(size: 22)) // h-6 w-6
+                    .font(Theme.sans(22)) // h-6 w-6
                     .foregroundColor(iconColor)
                 Text(title)
-                    .font(.system(size: Theme.FontSize.xl2, weight: .semibold))
+                    .font(Theme.sans(Theme.FontSize.xl2, weight: .semibold))
                     .tracking(-0.6)
                     .foregroundColor(Theme.cardForeground)
                     .fixedSize(horizontal: false, vertical: true)
@@ -260,7 +260,7 @@ struct TermsView: View {
     /// `text-muted-foreground` body paragraph.
     private func paragraph(_ text: String) -> some View {
         Text(text)
-            .font(.system(size: Theme.FontSize.base))
+            .font(Theme.sans(Theme.FontSize.base))
             .foregroundColor(Theme.mutedForeground)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -272,10 +272,10 @@ struct TermsView: View {
             ForEach(items, id: \.self) { item in
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
                     Text("•")
-                        .font(.system(size: Theme.FontSize.base))
+                        .font(Theme.sans(Theme.FontSize.base))
                         .foregroundColor(Theme.mutedForeground)
                     Text(item)
-                        .font(.system(size: Theme.FontSize.base))
+                        .font(Theme.sans(Theme.FontSize.base))
                         .foregroundColor(Theme.mutedForeground)
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -288,7 +288,7 @@ struct TermsView: View {
     private func subsection(heading: String, body: String) -> some View {
         VStack(alignment: .leading, spacing: 12) { // mb-3
             Text(heading) // text-lg font-semibold text-foreground
-                .font(.system(size: 18, weight: .semibold))
+                .font(Theme.sans(18, weight: .semibold))
                 .foregroundColor(Theme.foreground)
                 .fixedSize(horizontal: false, vertical: true)
             paragraph(body)
@@ -299,10 +299,10 @@ struct TermsView: View {
     private func contactRow(label: String, email: String) -> some View {
         HStack(spacing: 6) {
             Text(label)
-                .font(.system(size: Theme.FontSize.base, weight: .bold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .bold))
                 .foregroundColor(Theme.mutedForeground)
             Link(email, destination: URL(string: "mailto:\(email)")!)
-                .font(.system(size: Theme.FontSize.base))
+                .font(Theme.sans(Theme.FontSize.base))
                 .foregroundColor(Theme.primary)
         }
         .fixedSize(horizontal: false, vertical: true)

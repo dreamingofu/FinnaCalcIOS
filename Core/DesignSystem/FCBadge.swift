@@ -45,7 +45,7 @@ struct FCBadge<Content: View>: View {
             }
             content()
         }
-            .font(.system(size: Theme.FontSize.xs, weight: .semibold)) // text-xs font-semibold
+            .font(Theme.sans(Theme.FontSize.xs, weight: .semibold)) // text-xs font-semibold
             .foregroundStyle(foreground)
             .padding(.horizontal, 10) // px-2.5
             .padding(.vertical, 2)    // py-0.5

@@ -168,13 +168,13 @@ struct CashFlowCalculatorView: View {
             VStack(alignment: .leading, spacing: 4) {
                 CalcField(label: "Monthly Revenue Growth (%)", placeholder: "5", text: $revenueGrowthRate)
                 Text("Month-over-month revenue growth rate")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
             VStack(alignment: .leading, spacing: 4) {
                 CalcField(label: "Monthly Expense Growth (%)", placeholder: "2", text: $expenseGrowthRate)
                 Text("Month-over-month expense growth rate")
-                    .font(.system(size: Theme.FontSize.xs))
+                    .font(Theme.sans(Theme.FontSize.xs))
                     .foregroundColor(Theme.mutedForeground)
             }
         }
@@ -187,7 +187,7 @@ struct CashFlowCalculatorView: View {
         if let result {
             VStack(alignment: .leading, spacing: 16) {
                 Text("Cash Flow Projection")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(Theme.sans(18, weight: .semibold))
                     .foregroundColor(Theme.foreground)
 
                 CalcGrid {
@@ -226,7 +226,7 @@ struct CashFlowCalculatorView: View {
             message += " Cash turns positive in Month \(breakEven)."
         }
         return Text(message)
-            .font(.system(size: Theme.FontSize.sm))
+            .font(Theme.sans(Theme.FontSize.sm))
             .foregroundColor(Theme.warningText)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(12)
@@ -241,7 +241,7 @@ struct CashFlowCalculatorView: View {
     private func breakdown(_ result: CashFlowCalc.Result) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Monthly Breakdown")
-                .font(.system(size: Theme.FontSize.base, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.base, weight: .semibold))
                 .foregroundColor(Theme.foreground)
 
             // Header row
@@ -251,7 +251,7 @@ struct CashFlowCalculatorView: View {
                 breakdownCell("Expenses", weight: .medium, color: Theme.mutedForeground)
                 breakdownCell("Cash Balance", weight: .medium, color: Theme.mutedForeground)
             }
-            .font(.system(size: Theme.FontSize.xs))
+            .font(Theme.sans(Theme.FontSize.xs))
 
             ScrollView {
                 VStack(spacing: 4) {
@@ -269,7 +269,7 @@ struct CashFlowCalculatorView: View {
                                     color: rowNegative ? Theme.negative : Theme.positive
                                 )
                             }
-                            .font(.system(size: Theme.FontSize.sm))
+                            .font(Theme.sans(Theme.FontSize.sm))
                             Divider().background(Theme.border)
                         }
                     }

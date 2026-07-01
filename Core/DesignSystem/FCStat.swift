@@ -24,8 +24,15 @@ enum FCResultTone {
 
 /// The headline calculator figure (monthly payment, true APR, …).
 struct FCStat: View {
-    enum Size { case medium, large
-        var point: CGFloat { self == .large ? Theme.FontSize.xl4 : Theme.FontSize.xl3 }
+    enum Size {
+        case small, medium, large
+        var point: CGFloat {
+            switch self {
+            case .small:  return Theme.FontSize.xl2  // 24 — compact KPI tiles
+            case .medium: return Theme.FontSize.xl3  // 30
+            case .large:  return Theme.FontSize.xl4  // 36 — headline
+            }
+        }
     }
 
     let label: String
@@ -36,7 +43,7 @@ struct FCStat: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label.uppercased())
-                .font(.system(size: Theme.FontSize.xs, weight: .semibold))
+                .font(Theme.sans(Theme.FontSize.xs, weight: .semibold))
                 .tracking(0.6) // overline: uppercase, wide-tracked
                 .foregroundStyle(Theme.mutedForeground)
             Text(value)
@@ -59,7 +66,7 @@ struct FCResultRow: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
             Text(label)
-                .font(.system(size: Theme.FontSize.sm))
+                .font(Theme.sans(Theme.FontSize.sm))
                 .foregroundStyle(Theme.mutedForeground)
             Spacer(minLength: 12)
             Text(value)

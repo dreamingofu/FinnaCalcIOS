@@ -11,6 +11,10 @@ import SwiftUI
 struct FinnaCalcIOSApp: App {
     @StateObject private var auth = AuthManager()
 
+    init() {
+        registerBundledFonts() // IBM Plex Sans + Mono (bundled)
+    }
+
     var body: some Scene {
         WindowGroup {
             // Phase 2: the navigation shell (TabView) with auth state injected.
